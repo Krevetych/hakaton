@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Рассылка</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.5;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            font-size: 16px;
+        }
+        h1, h2, h3 {
+            color: #0056b3;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #eaeaea;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            text-align: center;
+        }
+        a {
+            color: #0056b3;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://example.com/logo.png" alt="Логотип компании" style="width: 100%; max-width: 200px;">
+        <h1>Новые рекомендации доступны!</h1>
+        <p>Мы рады сообщить вам, что появились новые рекомендации, которые могут вас заинтересовать.</p>
+        <p>Не упустите возможность ознакомиться с ними на нашем сайте.</p>
+        <p>С уважением,<br>Команда вашей компании</p>
+        
+        <div class="footer">
+            <p><a href="{% url 'disable-even-spam' %}">Отписаться от рассылки</a></p>
+            <p>Посетите наш сайт: <a href="https://example.com">example.com</a></p>
+        </div>
+    </div>
+</body>
+</html>
