@@ -41,20 +41,20 @@ def home(request):
 def login_view(request):
     try:
         data = json.loads(request.body.decode())
-        username = data.get("username")
+        email = data.get("email")
         password = data.get("password")
 
-        if user := authenticate(request, username=username, password=password):
+        if user := authenticate(request, email=email, password=password):
             login(request, user)
             return JsonResponse(Success().model_dump())
         else:
             return JsonResponse(
-                {"status": "error", "message": "Invalid credentials"}, status=400
+                ExceptionRequest(code=4, error="Invalid password or email").model_dump(), status=403
             )
     except json.JSONDecodeError:
-        return JsonResponse({"status": "error", "message": "Invalid JSON"}, status=400)
-    except Exception as e:
-        return JsonResponse({"status": "error", "message": str(e)}, status=500)
+        return JsonResponse(ExceptionRequest(code=10, error="Server exception").model_dump(), status=500)
+    except Exception:
+        return JsonResponse(ExceptionRequest(code=10, error="Server exception").model_dump(), status=500)
 
 
 @require_POST
