@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export const Footer = () => {
 	return (
-		<footer className='px-2 fixed bottom-0 left-1/2 -translate-x-1/2 w-full text-center z-10 lg:text-md 2xl:text-lg 2xl:bottom-1'>
+		<footer className='px-2 w-full text-center z-10 lg:text-md 2xl:text-lg 2xl:bottom-1 zed-xl:fixed zed-xl:bottom-0 zed-xl:left-1/2 zed-xl:-translate-x-1/2'>
 			<p className='hidden lg:block'>
 				&copy; Разработанно при поддержке{' '}
 				<Link

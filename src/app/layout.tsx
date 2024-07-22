@@ -1,3 +1,4 @@
+import cn from 'clsx'
 import type { Metadata } from 'next'
 import { Roboto } from 'next/font/google'
 
@@ -31,7 +32,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang='ru' className='bg-bg text-slate-200'>
-			<body className={zed.className}>
+			<body className={cn(zed.className, 'max-w-screen-zed-max mx-auto')}>
 				<Providers>{children}</Providers>
 			</body>
 		</html>

@@ -7,7 +7,7 @@ import { AnimatedTooltip } from './ui/AnimatedTooltip'
 export const Text = () => {
 	return (
 		<div className='flex flex-col items-center justify-centerlg:px-20'>
-			<p className='text-lg my-5 lg:w-3/4 lg:text-xl lg:text-center 2xl:text-2xl'>
+			<p className='text-md my-5 lg:w-3/4 lg:text-xl lg:text-center 2xl:text-2xl'>
 				Конец года – отличная возможность подвести итоги, сделать выводы и
 				перейти на новый уровень. Шаг за шагом, выполняя простые советы и
 				рекомендации экспертов компании{' '}

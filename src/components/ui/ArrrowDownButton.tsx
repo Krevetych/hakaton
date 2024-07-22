@@ -15,7 +15,7 @@ export const ArrowDownButton = () => {
 	}
 
 	return (
-		<div className='absolute -bottom-10 flex items-center justify-center lg:-bottom-0'>
+		<div className='hidden absolute -bottom-10 items-center justify-center lg:-bottom-0 zed-xl:flex'>
 			<div
 				className='animate-bounce cursor-pointer'
 				onClick={scrollToNextSection}
