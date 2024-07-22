@@ -1,58 +1,40 @@
-'use client'
-
-import { X } from 'lucide-react'
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React from 'react'
 
-interface ReadMoreProps {
-	text: string
-	title: string
-	link: string
-}
+import { TReadMore } from '@/types/sponsor.types'
 
-const ReadMore: React.FC<ReadMoreProps> = ({
-	text,
-	title,
-	link
-}: ReadMoreProps) => {
-	const [isModalOpen, setIsModalOpen] = useState(false)
+import {
+	Modal,
+	ModalBody,
+	ModalContent,
+	ModalFooter,
+	ModalTrigger
+} from './ui/AnimatedModal'
 
-	const handleOpenModal = () => setIsModalOpen(true)
-	const handleCloseModal = () => setIsModalOpen(false)
-
+const ReadMore: React.FC<TReadMore> = ({ text, title, link }: TReadMore) => {
 	const shortenedText = text.length > 100 ? `${text.slice(0, 100)}...` : text
 
 	return (
 		<div className='relative'>
-			<p className=''>
+			<Modal>
 				{shortenedText}
-				{text.length > 100 && (
-					<button
-						onClick={handleOpenModal}
-						className='ml-2 text-tertiary underline font-semibold'
-					>
-						Подробнее
-					</button>
-				)}
-			</p>
-
-			{isModalOpen && (
-				<div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 px-3'>
-					<div className='bg-primary p-6 rounded-lg shadow-lg max-w-lg w-full'>
-						<div className='flex items-center justify-between  mb-4'>
-							<h2 className='text-xl font-semibold'>{title}</h2>
-							<X onClick={handleCloseModal} />
+				<ModalTrigger>
+					{text.length > 100 && (
+						<div className='text-tertiary underline font-semibold'>
+							Подробнее
 						</div>
-						<p>{text}</p>
-						<p className='pt-2'>
-							Сайт:{' '}
-							<Link href={link} className='text-tertiary font-semibold'>
-								{link}
-							</Link>{' '}
-						</p>
-					</div>
-				</div>
-			)}
+					)}
+				</ModalTrigger>
+				<ModalBody>
+					<ModalContent className='gap-y-2'>
+						<p className='text-xl font-semibold'>{title}</p>
+						<div>{text}</div>
+						<Link href={link} className='font-semibold'>
+							Ссылка: <span className='text-tertiary'>{link}</span>
+						</Link>
+					</ModalContent>
+				</ModalBody>
+			</Modal>
 		</div>
 	)
 }
