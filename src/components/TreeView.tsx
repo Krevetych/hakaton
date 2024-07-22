@@ -1,5 +1,5 @@
-import { Popover, PopoverContent, PopoverTrigger } from '@nextui-org/react'
-import { Tooltip } from '@nextui-org/react'
+import { Popover, PopoverContent, PopoverTrigger } from '@nextui-org/popover'
+import { Tooltip } from '@nextui-org/tooltip'
 import { useMediaQuery } from 'react-responsive'
 
 import { Ball } from './ui/Ball'
