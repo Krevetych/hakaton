@@ -6,6 +6,8 @@ import { useState } from 'react'
 
 import { MENU } from '@/constants/menu.constants'
 
+import { AuthForm } from './AuthForm'
+import { SubForm } from './SubForm'
 import {
 	Modal,
 	ModalBody,
@@ -62,7 +64,13 @@ export const Header = () => {
 											/>
 										</ModalTrigger>
 										<ModalBody>
-											<ModalContent>{item.title}</ModalContent>
+											<ModalContent>
+												{item.title === 'Подписаться' ? (
+													<SubForm />
+												) : (
+													<AuthForm />
+												)}
+											</ModalContent>
 										</ModalBody>
 									</Modal>
 								))}
@@ -80,7 +88,9 @@ export const Header = () => {
 								/>
 							</ModalTrigger>
 							<ModalBody>
-								<ModalContent>{item.title}</ModalContent>
+								<ModalContent>
+									{item.title === 'Подписаться' ? <SubForm /> : <AuthForm />}
+								</ModalContent>
 							</ModalBody>
 						</Modal>
 					))}
