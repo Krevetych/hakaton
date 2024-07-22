@@ -1,6 +1,6 @@
 export const Forest = () => {
 	return (
-		<div className='hidden -z-10 xl:block'>
+		<div className='hidden -z-10 zed-xl:block'>
 			<div>
 				<img
 					src='./Sapin.png'

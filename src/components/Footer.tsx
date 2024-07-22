@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export const Footer = () => {
 	return (
-		<footer className='px-2 w-full text-center z-10 lg:text-md 2xl:text-lg 2xl:bottom-1 zed-xl:fixed zed-xl:bottom-0 zed-xl:left-1/2 zed-xl:-translate-x-1/2'>
+		<footer className='px-2 w-full text-center z-10 zed-lg:text-md zed-xl:text-lg zed-xl:bottom-1 zed-xl:fixed zed-xl:left-1/2 zed-xl:-translate-x-1/2'>
 			<p className='hidden lg:block'>
 				&copy; Разработанно при поддержке{' '}
 				<Link
@@ -13,7 +13,7 @@ export const Footer = () => {
 				</Link>{' '}
 				в 2024 году
 			</p>
-			<p className='block lg:hidden'>
+			<p className='block zed-lg:hidden'>
 				&copy;{' '}
 				<Link
 					href='https://cyberprotect.ru/'

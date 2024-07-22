@@ -8,7 +8,7 @@ import ReadMore from '../ReadMore'
 export const About = () => {
 	return (
 		<main className='p-3 flex items-center justify-center flex-col'>
-			<h1 className='text-3xl font-black lg:text-center lg:text-5xl 2xl:text-6xl'>
+			<h1 className='text-3xl font-black zed-lg:text-center zed-lg:text-5xl zed-xl:text-6xl'>
 				Узнайте больше о цифровой безопасности вместе с{' '}
 				<Link href='https://cyberprotect.ru' className='text-tertiary'>
 					Киберпротектом
@@ -20,11 +20,11 @@ export const About = () => {
 				showThumbs={false}
 				autoPlay
 				interval={5000}
-				className='mt-10 hidden lg:block lg:max-w-6xl'
+				className='mt-10 hidden zed-lg:block zed-lg:max-w-6xl'
 			>
 				<div className='my-2 flex flex-col gap-y-3 p-5'>
 					<ImagePreview src='./cyberprotect.png' alt='Cyberprotect' />
-					<p className='2xl:text-lg'>
+					<p className='zed-xl:text-lg'>
 						<Link
 							href='https://cyberprotect.ru'
 							className='text-tertiary font-semibold'
@@ -41,7 +41,7 @@ export const About = () => {
 
 				<div className='flex flex-col gap-y-3 p-5'>
 					<ImagePreview src='./cybercare.png' alt='Cybercare' />
-					<p className='2xl:text-lg'>
+					<p className='zed-xl:text-lg'>
 						В 2021 году компания Киберпротект разработала и запустила бесплатный
 						всероссийский проект по обучению детей и взрослых основам
 						безопасного поведения в Интернете –{' '}
@@ -58,7 +58,7 @@ export const About = () => {
 					</p>
 				</div>
 			</Carousel>
-			<div className='flex flex-col items-center justify-center gap-y-3 mt-5 lg:hidden'>
+			<div className='flex flex-col items-center justify-center gap-y-3 mt-5 zed-lg:hidden'>
 				<div className='my-2 flex flex-col gap-y-3'>
 					<ImagePreview src='./cyberprotect.png' alt='Cyberprotect' />
 					<ReadMore

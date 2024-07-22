@@ -13,26 +13,26 @@ export const Header = () => {
 
 	return (
 		<>
-			<header className='flex justify-between items-center p-3 relative lg:p-10'>
-				<div className='lg:relative'>
-					<img src='./logo.svg' alt='Logo' className='w-[80px] lg:w-full' />
-					<p className='text-xs lg:absolute lg:-top-1 lg:-right-16 lg:rotate-[35deg]'>
+			<header className='flex justify-between items-center p-3 relative zed-lg:p-10'>
+				<div className='zed-lg:relative'>
+					<img src='./logo.svg' alt='Logo' className='w-[80px] zed-lg:w-full' />
+					<p className='text-xs zed-lg:absolute zed-lg:-top-1 zed-lg:-right-16 zed-lg:rotate-[35deg]'>
 						for the hakaton
 					</p>
 				</div>
 				<div className='flex items-center'>
-					<p className='hidden text-sm font-semibold xl:block'>
+					<p className='hidden text-sm font-semibold zed-xl:block'>
 						При поддержке:{' '}
 					</p>
 					<Link href='https://cyberprotect.ru'>
 						<img
 							src='./white-sponsor.png'
 							alt='Sponsor'
-							className='w-[150px] lg:w-[300px]'
+							className='w-[150px] zed-lg:w-[300px]'
 						/>
 					</Link>
 				</div>
-				<div className='visible lg:hidden'>
+				<div className='visible zed-lg:hidden'>
 					<div>
 						{open ? (
 							<X onClick={() => setOpen(false)} />
@@ -59,7 +59,7 @@ export const Header = () => {
 						</div>
 					)}
 				</div>
-				<div className='hidden lg:flex lg:gap-x-3'>
+				<div className='hidden zed-lg:flex zed-lg:gap-x-3'>
 					{MENU.map(item => (
 						<Button
 							key={item.title}
@@ -73,7 +73,7 @@ export const Header = () => {
 				<img
 					src='./header.png'
 					alt='Header'
-					className='absolute top-18 lg:top-[100px] '
+					className='absolute top-18 zed-lg:top-[100px] '
 				/>
 			</div>
 		</>
