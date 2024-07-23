@@ -1,5 +1,6 @@
 'use client'
 
+import { NextUIProvider } from '@nextui-org/system'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { PropsWithChildren, ReactNode, useState } from 'react'
 
@@ -16,7 +17,11 @@ export function Providers({ children }: PropsWithChildren) {
 		})
 	)
 
-	return <QueryClientProvider client={client}>{children}</QueryClientProvider>
+	return (
+		<QueryClientProvider client={client}>
+			<NextUIProvider>{children}</NextUIProvider>
+		</QueryClientProvider>
+	)
 }
 
 export const ModalProvider = ({ children }: { children: ReactNode }) => {

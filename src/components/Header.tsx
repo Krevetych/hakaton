@@ -6,8 +6,8 @@ import { useState } from 'react'
 
 import { MENU } from '@/constants/menu.constants'
 
-import { AuthForm } from './AuthForm'
-import { SubForm } from './SubForm'
+import { LoginForm } from './auth/LoginForm'
+import { RegisterForm } from './auth/RegisterForm'
 import {
 	Modal,
 	ModalBody,
@@ -66,9 +66,9 @@ export const Header = () => {
 										<ModalBody>
 											<ModalContent>
 												{item.title === 'Подписаться' ? (
-													<SubForm />
+													<RegisterForm />
 												) : (
-													<AuthForm />
+													<LoginForm />
 												)}
 											</ModalContent>
 										</ModalBody>
@@ -89,7 +89,7 @@ export const Header = () => {
 							</ModalTrigger>
 							<ModalBody>
 								<ModalContent>
-									{item.title === 'Подписаться' ? <SubForm /> : <AuthForm />}
+									{item.title === 'Подписаться' ? <RegisterForm /> : <LoginForm />}
 								</ModalContent>
 							</ModalBody>
 						</Modal>
