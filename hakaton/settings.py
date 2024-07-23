@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-@#@gp@2=a0i1_7#5u5sod*xny$@!#@ii(4ebq@==2_d52&a$r)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["backend.movie-rank.ru"]
 
 
 # Application definition
