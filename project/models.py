@@ -4,6 +4,7 @@ from django.contrib.auth.models import (
     PermissionsMixin,
 )
 from django.db import models
+from loguru import logger
 
 
 class CustomUserManager(BaseUserManager):
@@ -39,6 +40,17 @@ class CustomUserManager(BaseUserManager):
         except CustomUser.DoesNotExist:
             return None
 
+    def change_password(self, email: str, password: str):
+        # user = self.model(email=email)
+        user = CustomUser.objects.filter(email=email).first()
+        if user is None:
+            raise ValueError("Invalid email address")
+
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+
     def delete_user(self, user_id):
         try:
             user = self.get(pk=user_id)
@@ -72,7 +84,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     objects = CustomUserManager()
 
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ["username"]
 
     def __str__(self):
         return f"{self.username} {self.spam_subcribe}"

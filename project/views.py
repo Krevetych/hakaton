@@ -49,12 +49,19 @@ def login_view(request):
             return JsonResponse(Success().model_dump())
         else:
             return JsonResponse(
-                ExceptionRequest(code=4, error="Invalid password or email").model_dump(), status=403
+                ExceptionRequest(
+                    code=4, error="Invalid password or email"
+                ).model_dump(),
+                status=403,
             )
     except json.JSONDecodeError:
-        return JsonResponse(ExceptionRequest(code=10, error="Server exception").model_dump(), status=500)
+        return JsonResponse(
+            ExceptionRequest(code=10, error="Server exception").model_dump(), status=500
+        )
     except Exception:
-        return JsonResponse(ExceptionRequest(code=10, error="Server exception").model_dump(), status=500)
+        return JsonResponse(
+            ExceptionRequest(code=10, error="Server exception").model_dump(), status=500
+        )
 
 
 @require_POST
@@ -67,10 +74,9 @@ def register(request):
         telegram = data.get("telegram")
 
         UserRegistration(username=username, email=email, telegram=telegram)
-        password = generate_password()
+        password = "password"
 
         CustomUser.objects.create_user(username, email, password, telegram=telegram)
-        send_email_password(email, password)
         return JsonResponse(Success().model_dump())
     except ValidationError as e:
         return JsonResponse(
@@ -78,6 +84,20 @@ def register(request):
         )
     except IntegrityError as e:
         return JsonResponse(ExceptionRequest(error=str(e)).model_dump())
+
+
+@require_POST
+@csrf_exempt
+def change_password(request):
+    try:
+        data = json.loads(request.body.decode())
+        email = data.get("email")
+        password = generate_password()
+        CustomUser.objects.change_password(email, password)
+        send_email_password(email, password)
+        return JsonResponse(Success().model_dump())
+    except ValueError as e:
+        return JsonResponse(ExceptionRequest(code=6, error=str(e)).model_dump())
 
 
 @require_POST
@@ -99,9 +119,9 @@ def user_detail_view(request):
             "telegram": user.telegram,
             "date_joined": user.date_joined,
         }
-        return JsonResponse(user_data)
+        return JsonResponse(Success(data=user_data).model_dump())
     except CustomUser.DoesNotExist:
-        return JsonResponse({"error": "User not found"}, status=404)
+        return JsonResponse(ExceptionRequest(code=7, error="User not found", status=404))
 
     except Exception as e:
         logger.opt(exception=e).critical("fsjhfdsjdhf")
@@ -145,9 +165,9 @@ def get_all_events(request):
 def get_events_for_user(request):
     user_id = request.session.get("_auth_user_id")
     user = CustomUser.objects.get(pk=user_id)
-    user_timezone = pytz.timezone(user.timezone)    
+    user_timezone = pytz.timezone(user.timezone)
     events = Event.objects.filter(date_open=datetime.now(user_timezone))
-    
+
     events_data = [
         {
             "title": event.title,
