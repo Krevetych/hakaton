@@ -5,6 +5,7 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 
 import { TRegisterFormState } from '@/types/auth.types'
 
+import { Heading } from '../Heading'
 import { Field } from '../ui/Field'
 
 import { authService } from '@/services/auth.service'
@@ -34,9 +35,8 @@ export const RegisterForm = () => {
 			className='flex w-full flex-wrap zed-xl:flex-nowrap gap-4'
 			onSubmit={handleSubmit(onSubmit)}
 		>
-			<p className='text-center font-semibold uppercase zed-xl:text-2xl zed-xl:font-black'>
-				Подписаться
-			</p>
+			<Heading title='Подписаться' />
+
 			<div className='flex flex-col gap-y-5 w-full'>
 				<Field
 					id='email'
@@ -61,7 +61,9 @@ export const RegisterForm = () => {
 						required: 'Telegram username обязателен'
 					})}
 				/>
-				<Button color='secondary' className='font-black'>Подписаться</Button>
+				<Button color='secondary' className='font-black'>
+					Подписаться
+				</Button>
 			</div>
 		</form>
 	)

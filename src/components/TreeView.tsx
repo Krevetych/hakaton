@@ -2,8 +2,9 @@ import { Popover, PopoverContent, PopoverTrigger } from '@nextui-org/popover'
 import { Tooltip } from '@nextui-org/tooltip'
 import { useMediaQuery } from 'react-responsive'
 
-import { Ball } from './ui/Ball'
 import { useIsClient } from '@/hooks/useIsClient'
+
+import { Ball } from './ui/Ball'
 
 interface ITree {
 	number: number
@@ -18,7 +19,7 @@ export const TreeView = ({ number }: ITree) => {
 			{isClient && isLG ? (
 				<Tooltip
 					content={`${number}, Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto ducimus perspiciatis beatae nulla nam reiciendis necessitatibus voluptatem id, dicta excepturi ipsa consectetur porro incidunt eius. Quas dolor culpa officia perspiciatis tempore consectetur perferendis autem nesciunt officiis. Eos eum aliquid maxime quisquam fugiat. Ex iusto non voluptas sed illum numquam similique!`}
-					color='secondary'
+					color='primary'
 					placement='top'
 					showArrow={true}
 					className='w-72 max-h-[85vh] rounded-xl p-4'
@@ -28,13 +29,13 @@ export const TreeView = ({ number }: ITree) => {
 					</div>
 				</Tooltip>
 			) : (
-				<Popover showArrow={true} color='secondary'>
+				<Popover showArrow={true} color='primary'>
 					<PopoverTrigger>
 						<div>
 							<Ball number={number} />
 						</div>
 					</PopoverTrigger>
-					<PopoverContent  className='w-72 max-h-[85vh] rounded-xl p-4'>
+					<PopoverContent className='w-72 max-h-[85vh] rounded-xl p-4'>
 						<p>
 							{number}, Lorem ipsum dolor sit amet consectetur adipisicing elit.
 							Iusto ducimus perspiciatis beatae nulla nam reiciendis
