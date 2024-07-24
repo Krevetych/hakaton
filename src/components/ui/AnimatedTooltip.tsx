@@ -7,7 +7,6 @@ import {
 	useSpring,
 	useTransform
 } from 'framer-motion'
-import Image from 'next/image'
 import React, { useState } from 'react'
 
 export const AnimatedTooltip = ({

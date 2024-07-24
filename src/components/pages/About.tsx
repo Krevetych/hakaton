@@ -12,7 +12,12 @@ export const About = () => {
 		<main className='p-3 flex items-center justify-center flex-col'>
 			<h1 className='text-3xl font-black zed-lg:text-center zed-lg:text-5xl zed-xl:text-6xl'>
 				Узнайте больше о цифровой безопасности вместе с{' '}
-				<Link href='https://cyberprotect.ru' className='text-tertiary'>
+				<Link
+					href='https://cyberprotect.ru'
+					target='_blank'
+					rel='noopener noreferrer'
+					className='text-tertiary'
+				>
 					Киберпротектом
 				</Link>
 			</h1>

@@ -7,6 +7,8 @@ export const Footer = () => {
 				&copy; Разработанно при поддержке{' '}
 				<Link
 					href='https://cyberprotect.ru/'
+					target='_blank'
+					rel='noopener noreferrer'
 					className='font-semibold text-tertiary transition-colors hover:text-primary'
 				>
 					ООО «Киберпротект»
@@ -17,6 +19,8 @@ export const Footer = () => {
 				&copy;{' '}
 				<Link
 					href='https://cyberprotect.ru/'
+					target='_blank'
+					rel='noopener noreferrer'
 					className='font-semibold text-tertiary transition-colors hover:text-primary'
 				>
 					ООО «Киберпротект»

@@ -32,7 +32,8 @@ export const Header = () => {
 					<p className='hidden text-sm font-semibold zed-xl:block'>
 						При поддержке:{' '}
 					</p>
-					<Link href='https://cyberprotect.ru'>
+					<Link href='https://cyberprotect.ru' target='_blank'
+						rel='noopener noreferrer'>
 						<img
 							src='./white-sponsor.png'
 							alt='Sponsor'

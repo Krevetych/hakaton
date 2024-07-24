@@ -29,7 +29,12 @@ const ReadMore: React.FC<TReadMore> = ({ text, title, link }: TReadMore) => {
 					<ModalContent className='gap-y-2'>
 						<p className='text-xl font-semibold'>{title}</p>
 						<div>{text}</div>
-						<Link href={link} className='font-semibold'>
+						<Link
+							href={link}
+							target='_blank'
+							rel='noopener noreferrer'
+							className='font-semibold'
+						>
 							Ссылка: <span className='text-tertiary'>{link}</span>
 						</Link>
 					</ModalContent>

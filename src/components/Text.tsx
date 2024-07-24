@@ -11,7 +11,12 @@ export const Text = () => {
 				Конец года – отличная возможность подвести итоги, сделать выводы и
 				перейти на новый уровень. Шаг за шагом, выполняя простые советы и
 				рекомендации экспертов компании{' '}
-				<Link href='https://cyberprotect.ru' className='text-tertiary'>
+				<Link
+					href='https://cyberprotect.ru'
+					target='_blank'
+					rel='noopener noreferrer'
+					className='text-tertiary'
+				>
 					«Киберпротект»
 				</Link>
 				, вы сможете обезопасить себя и своих близких в цифровой среде.

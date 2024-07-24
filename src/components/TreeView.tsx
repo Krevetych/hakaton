@@ -8,45 +8,65 @@ import { Ball } from './ui/Ball'
 
 interface ITree {
 	number: number
+	currentDate?: number
 }
 
-export const TreeView = ({ number }: ITree) => {
+export const TreeView = ({ number, currentDate }: ITree) => {
 	const isClient = useIsClient()
 	const isLG = useMediaQuery({ minWidth: 1024 })
+
+	const today = new Date().getDate()
+	if (currentDate === undefined) currentDate = today
+	const isPastOrToday = number <= currentDate
+
+	const ballSrc = isPastOrToday ? './ball2.png' : './ball.png'
+
+	const TooltipContent = (
+		<div className='w-72 max-h-[85vh] rounded-xl p-4'>
+			{number}, Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto
+			ducimus perspiciatis beatae nulla nam reiciendis necessitatibus voluptatem
+			id, dicta excepturi ipsa consectetur porro incidunt eius. Quas dolor culpa
+			officia perspiciatis tempore consectetur perferendis autem nesciunt
+			officiis. Eos eum aliquid maxime quisquam fugiat. Ex iusto non voluptas
+			sed illum numquam similique!
+		</div>
+	)
 
 	return (
 		<>
 			{isClient && isLG ? (
-				<Tooltip
-					content={`${number}, Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto ducimus perspiciatis beatae nulla nam reiciendis necessitatibus voluptatem id, dicta excepturi ipsa consectetur porro incidunt eius. Quas dolor culpa officia perspiciatis tempore consectetur perferendis autem nesciunt officiis. Eos eum aliquid maxime quisquam fugiat. Ex iusto non voluptas sed illum numquam similique!`}
-					color='primary'
-					placement='top'
-					showArrow={true}
-					className='w-72 max-h-[85vh] rounded-xl p-4'
-				>
+				isPastOrToday ? (
+					<Tooltip
+						content={TooltipContent}
+						color='primary'
+						placement='top'
+						showArrow={true}
+						className='w-72 max-h-[85vh] rounded-xl p-4'
+					>
+						<div className='relative cursor-pointer'>
+							<Ball number={number} src={ballSrc} isPast={isPastOrToday} />
+						</div>
+					</Tooltip>
+				) : (
 					<div className='relative cursor-pointer'>
-						<Ball number={number} />
+						<Ball number={number} src={ballSrc} isPast={isPastOrToday} />
 					</div>
-				</Tooltip>
-			) : (
+				)
+			) : isPastOrToday ? (
 				<Popover showArrow={true} color='primary'>
 					<PopoverTrigger>
 						<div>
-							<Ball number={number} />
+							<Ball number={number} src={ballSrc} isPast={isPastOrToday} />
 						</div>
 					</PopoverTrigger>
 					<PopoverContent className='w-72 max-h-[85vh] rounded-xl p-4'>
-						<p>
-							{number}, Lorem ipsum dolor sit amet consectetur adipisicing elit.
-							Iusto ducimus perspiciatis beatae nulla nam reiciendis
-							necessitatibus voluptatem id, dicta excepturi ipsa consectetur
-							porro incidunt eius. Quas dolor culpa officia perspiciatis tempore
-							consectetur perferendis autem nesciunt officiis. Eos eum aliquid
-							maxime quisquam fugiat. Ex iusto non voluptas sed illum numquam
-							similique!
-						</p>
+						<p>{TooltipContent}</p>
 					</PopoverContent>
 				</Popover>
+			) : (
+				<div>
+					<Ball number={number} src={ballSrc} isPast={isPastOrToday} />
+				</div>
 			)}
 		</>
 	)

@@ -2,6 +2,9 @@ import cn from 'clsx'
 import type { Metadata } from 'next'
 import { Roboto } from 'next/font/google'
 
+import { Banner } from '@/components/Banner'
+//import TestComponent from '@/components/tests/TestComponents'
+
 import { SITE_NAME } from '@/constants/seo.constants'
 
 import './globals.css'
@@ -33,7 +36,11 @@ export default function RootLayout({
 	return (
 		<html lang='ru' className='bg-bg text-slate-200'>
 			<body className={cn(zed.className, 'max-w-screen-zed-max mx-auto')}>
-				<Providers>{children}</Providers>
+				<Providers>
+					{children}
+					<Banner />
+					{/*<TestComponent />*/}
+				</Providers>
 			</body>
 		</html>
 	)
