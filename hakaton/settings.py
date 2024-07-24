@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-@#@gp@2=a0i1_7#5u5sod*xny$@!#@ii(4ebq@==2_d52&a$r)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["backend.movie-rank.ru", "http://localhost:3000", "https://hakaton.movie-rank.ru"]
 CSRF_TRUSTED_ORIGINS =["https://backend.movie-rank.ru/*", "http://localhost:3000", "https://hakaton.movie-rank.ru"]
