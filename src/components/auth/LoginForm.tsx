@@ -1,9 +1,12 @@
+'use client'
+
 import { Button } from '@nextui-org/button'
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 
-import { TLoginFormState } from '@/types/auth.types'
+import { TChangePasswordFormState, TLoginFormState } from '@/types/auth.types'
 
 import { Heading } from '../Heading'
 import { Field } from '../ui/Field'
@@ -16,18 +19,34 @@ export const LoginForm = () => {
 	})
 
 	const { refresh } = useRouter()
+	const queryClient = useQueryClient()
+	const [isPasswordChanged, setIsPasswordChanged] = useState(false)
 
-	const { mutate } = useMutation({
+	const { mutate: changePasswordMutate } = useMutation({
+		mutationKey: ['changePassword'],
+		mutationFn: (data: TChangePasswordFormState) =>
+			authService.changePassword(data),
+		onSuccess: () => {
+			setIsPasswordChanged(true)
+		}
+	})
+
+	const { mutate: loginMutate } = useMutation({
 		mutationKey: ['login'],
 		mutationFn: (data: TLoginFormState) => authService.login(data),
 		onSuccess: () => {
 			reset()
 			refresh()
+			queryClient.invalidateQueries({ queryKey: ['user'] })
 		}
 	})
 
 	const onSubmit: SubmitHandler<TLoginFormState> = data => {
-		mutate(data)
+		if (!isPasswordChanged) {
+			changePasswordMutate(data)
+		} else {
+			loginMutate(data)
+		}
 	}
 
 	return (
@@ -44,15 +63,17 @@ export const LoginForm = () => {
 					type='email'
 					{...register('email', { required: 'Email обязателен' })}
 				/>
-				<Field
-					id='password'
-					label='Password'
-					placeholder='Ваш password'
-					type='password'
-					{...register('password', { required: 'Password обязателен' })}
-				/>
+				{isPasswordChanged && (
+					<Field
+						id='password'
+						label='Password'
+						placeholder='Ваш password'
+						type='password'
+						{...register('password', { required: 'Password обязателен' })}
+					/>
+				)}
 				<Button className='font-black' color='secondary'>
-					Авторизоваться
+					{isPasswordChanged ? 'Авторизоваться' : 'Получить пароль'}
 				</Button>
 			</div>
 		</form>

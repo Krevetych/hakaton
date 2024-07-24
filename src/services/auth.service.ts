@@ -1,5 +1,6 @@
 import {
 	TAuthResponse,
+	TChangePasswordFormState,
 	TLoginFormState,
 	TRegisterFormState
 } from '@/types/auth.types'
@@ -9,6 +10,16 @@ import { axiosZed } from '@/api/interceptors'
 class AuthService {
 	private loginURL = '/login'
 	private registerURL = '/register'
+	private changePasswordURL = '/change-password'
+
+	async changePassword(data: TChangePasswordFormState): Promise<TAuthResponse> {
+		const response: TAuthResponse = await axiosZed.post(
+			this.changePasswordURL,
+			data
+		)
+
+		return response
+	}
 
 	async login(data: TLoginFormState): Promise<TAuthResponse> {
 		const response: TAuthResponse = await axiosZed.post(this.loginURL, data)

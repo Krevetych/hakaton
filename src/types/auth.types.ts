@@ -13,4 +13,8 @@ interface IAuthResponse extends ISuccess {
 
 export type TRegisterFormState = Omit<IAuth, 'password'>
 export type TLoginFormState = Omit<IAuth, 'login' | 'telegram'>
+export type TChangePasswordFormState = Omit<
+	IAuth,
+	'login' | 'password' | 'telegram'
+>
 export type TAuthResponse = IAuthResponse
