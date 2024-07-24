@@ -23,6 +23,9 @@ export const RegisterForm = () => {
 		onSuccess: () => {
 			reset()
 			refresh()
+		},
+		onError: error => {
+			console.error('Ошибка регистрации:', error)
 		}
 	})
 
@@ -61,7 +64,7 @@ export const RegisterForm = () => {
 						required: 'Telegram username обязателен'
 					})}
 				/>
-				<Button color='secondary' className='font-black'>
+				<Button color='secondary' type='submit' className='font-black'>
 					Подписаться
 				</Button>
 			</div>
