@@ -72,7 +72,7 @@ export const LoginForm = () => {
 						{...register('password', { required: 'Password обязателен' })}
 					/>
 				)}
-				<Button className='font-black' color='secondary'>
+				<Button className='font-black' color='secondary' type='submit'>
 					{isPasswordChanged ? 'Авторизоваться' : 'Получить пароль'}
 				</Button>
 			</div>
