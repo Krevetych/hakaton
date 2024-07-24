@@ -51,11 +51,11 @@ export const RegisterForm = () => {
 					{...register('email', { required: 'Email обязателен' })}
 				/>
 				<Field
-					id='login'
-					label='Login'
-					placeholder='Ваш login'
+					id='username'
+					label='Username'
+					placeholder='Ваш username'
 					type='text'
-					{...register('login', { required: 'Login обязателен' })}
+					{...register('username', { required: 'Username обязателен' })}
 				/>
 				<Field
 					id='telegram'

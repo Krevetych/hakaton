@@ -2,7 +2,7 @@ import { ISuccess } from './success.types'
 
 interface IAuth {
 	email: string
-	login: string
+	username: string
 	telegram: string
 	password: string
 }
