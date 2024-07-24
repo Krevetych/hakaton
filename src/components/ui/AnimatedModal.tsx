@@ -1,7 +1,6 @@
 'use client'
 
 import { AnimatePresence, motion } from 'framer-motion'
-import { X } from 'lucide-react'
 import React, { ReactNode, useEffect, useRef } from 'react'
 
 import { useModal } from '@/hooks/useModal'
@@ -104,7 +103,6 @@ export const ModalBody = ({
 							damping: 15
 						}}
 					>
-						<CloseIcon />
 						{children}
 					</motion.div>
 				</motion.div>
@@ -123,7 +121,7 @@ export const ModalContent = ({
 	return (
 		<div
 			className={cn(
-				'flex flex-col flex-1 p-8 overflow-y-auto max-h-[80vh] md:p-10',
+				'flex flex-col flex-1 z-30 p-8 overflow-y-auto max-h-[80vh] md:p-10',
 				className
 			)}
 		>
@@ -167,17 +165,5 @@ const Overlay = ({ className }: { className?: string }) => {
 			}}
 			className={`fixed inset-0 h-full w-full bg-black bg-opacity-50 z-50 ${className}`}
 		></motion.div>
-	)
-}
-
-const CloseIcon = () => {
-	const { setOpen } = useModal()
-	return (
-		<button
-			onClick={() => setOpen(false)}
-			className='absolute top-4 right-4 group'
-		>
-			<X size={24} />
-		</button>
 	)
 }

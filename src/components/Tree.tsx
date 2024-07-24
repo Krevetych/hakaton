@@ -22,7 +22,7 @@ const Tree: React.FC = () => {
 	const levels = createLevels()
 
 	return (
-		<div className='relative flex flex-col items-center justify-center w-full mt-5 zed-lg:justify-normal zed-lg:mt-3 zed-xl:h-[85vh]'>
+		<div className='z-0 relative flex flex-col items-center justify-center w-full mt-5 zed-lg:justify-normal zed-lg:mt-3 zed-xl:h-[85vh]'>
 			{levels.map((level, i) => (
 				<div
 					key={i}

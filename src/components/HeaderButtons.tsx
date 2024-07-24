@@ -51,7 +51,7 @@ export const HeaderButtons = ({ data, loggedIn }: IHeaderButtons) => {
 												className='text-center w-full text-sm py-1 px-2 active:bg-tertiary'
 											/>
 										</ModalTrigger>
-										<ModalBody className='z-50'>
+										<ModalBody>
 											<ModalContent>
 												{item.title === 'Подписаться' ? (
 													<RegisterForm />
@@ -79,7 +79,7 @@ export const HeaderButtons = ({ data, loggedIn }: IHeaderButtons) => {
 									className='py-2 px-4 hover:bg-tertiary'
 								/>
 							</ModalTrigger>
-							<ModalBody className='z-50'>
+							<ModalBody>
 								<ModalContent>
 									{item.title === 'Подписаться' ? (
 										<RegisterForm />
