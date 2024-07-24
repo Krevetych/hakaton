@@ -110,6 +110,7 @@ def logout_user(запрос):
 @login_required
 def user_detail_view(request):
     try:
+        logger.debug(f"{request.session.items() = }")
         user_id = request.session.get("_auth_user_id")
         user = CustomUser.objects.get(pk=user_id)
         user_data = {
