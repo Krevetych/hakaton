@@ -6,7 +6,8 @@ const options: CreateAxiosDefaults = {
 	baseURL: API_URL,
 	headers: {
 		'Content-Type': 'application/json'
-	}
+	},
+	withCredentials: true
 }
 
 const axiosZed = axios.create(options)
