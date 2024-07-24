@@ -2,7 +2,14 @@ import axios, { CreateAxiosDefaults } from 'axios'
 
 import { API_URL } from '@/constants/url.constants'
 
-const options: CreateAxiosDefaults = {
+const baseOptions: CreateAxiosDefaults = {
+	baseURL: API_URL,
+	headers: {
+		'Content-Type': 'application/json'
+	}
+}
+
+const authOptions: CreateAxiosDefaults = {
 	baseURL: API_URL,
 	headers: {
 		'Content-Type': 'application/json'
@@ -10,6 +17,7 @@ const options: CreateAxiosDefaults = {
 	withCredentials: true
 }
 
-const axiosZed = axios.create(options)
+const axiosZed = axios.create(baseOptions)
+const axiosWithAuth = axios.create(authOptions)
 
-export { axiosZed }
+export { axiosZed, axiosWithAuth }
