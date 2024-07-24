@@ -27,7 +27,9 @@ SECRET_KEY = 'django-insecure-@#@gp@2=a0i1_7#5u5sod*xny$@!#@ii(4ebq@==2_d52&a$r)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["backend.movie-rank.ru"]
+ALLOWED_HOSTS = ["backend.movie-rank.ru", "http://localhost:3000", "https://hakaton.movie-rank.ru"]
+CSRF_TRUSTED_ORIGINS =["https://backend.movie-rank.ru/*", "http://localhost:3000", "https://hakaton.movie-rank.ru"]
+SESSION_COOKIE_AGE = 60*60*24
 
 
 # Application definition
@@ -124,7 +126,9 @@ AUTH_USER_MODEL = 'project.CustomUser'
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+STATIC_ROOT = '/var/www/hakaton/static/'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
