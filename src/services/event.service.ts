@@ -4,8 +4,8 @@ import { axiosZed } from '@/api/interceptors'
 
 class EventService {
 	private URL = '/event'
-	private allEventsURL = `${this.URL}/all`
-	private userEventsURL = `${this.URL}/user`
+	private allEventsURL = `${this.URL}/all/`
+	private userEventsURL = `${this.URL}/user/`
 
 	async getAllEvents(): Promise<TEventResponse> {
 		const response: TEventResponse = await axiosZed.get(this.allEventsURL)

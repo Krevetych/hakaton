@@ -8,9 +8,9 @@ import {
 import { axiosZed } from '@/api/interceptors'
 
 class AuthService {
-	private loginURL = '/login'
-	private registerURL = '/register'
-	private changePasswordURL = '/change-password'
+	private loginURL = '/login/'
+	private registerURL = '/register/'
+	private changePasswordURL = '/change-password/'
 
 	async changePassword(data: TChangePasswordFormState): Promise<TAuthResponse> {
 		const response: TAuthResponse = await axiosZed.post(
