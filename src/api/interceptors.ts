@@ -6,7 +6,8 @@ const baseOptions: CreateAxiosDefaults = {
 	baseURL: API_URL,
 	headers: {
 		'Content-Type': 'application/json'
-	}
+	},
+	withCredentials: true
 }
 
 const authOptions: CreateAxiosDefaults = {
