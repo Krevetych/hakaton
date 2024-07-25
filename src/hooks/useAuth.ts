@@ -13,7 +13,7 @@ export const useAuth = () => {
 			.find(row => row.startsWith('sessionid='))
 			?.split('=')[1]
 
-		console.log("SessionID: ", sessionId)
+		console.log('SessionID: ', sessionId)
 
 		if (sessionId) {
 			localStorage.setItem('sessionid', sessionId)
@@ -28,8 +28,7 @@ export const useAuth = () => {
 		retry: false
 	})
 
-	console.log(sessionId)
-	console.log(data)
+	console.log('UseAuth:', data)
 
 	return {
 		data,

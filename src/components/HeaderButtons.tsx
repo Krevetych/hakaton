@@ -17,12 +17,13 @@ import { Button } from './ui/Button'
 
 interface IHeaderButtons {
 	data: TUserResponse | undefined
+	isLoading: boolean
 }
 
-export const HeaderButtons = ({ data }: IHeaderButtons) => {
+export const HeaderButtons = ({ data, isLoading }: IHeaderButtons) => {
 	const [open, setOpen] = useState(false)
 
-	console.log("Header button:", data)
+	console.log('Header button:', data)
 
 	return (
 		<>
@@ -40,7 +41,9 @@ export const HeaderButtons = ({ data }: IHeaderButtons) => {
 							open ? 'opacity-100' : 'opacity-0'
 						}`}
 					>
-						{data ? (
+						{isLoading ? (
+							<p>Загрузка...</p>
+						) : data ? (
 							<p>{data.data.email}</p>
 						) : (
 							<ul className='flex flex-col gap-y-2'>
@@ -69,7 +72,9 @@ export const HeaderButtons = ({ data }: IHeaderButtons) => {
 				)}
 			</div>
 			<div className='hidden zed-lg:flex zed-lg:gap-x-3'>
-				{data ? (
+				{isLoading ? (
+					<p>Загрузка...</p>
+				) : data ? (
 					<p>{data.data.email}</p>
 				) : (
 					MENU.map(item => (
