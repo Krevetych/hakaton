@@ -1,13 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-export async function middleware(request: NextRequest, response: NextResponse) {
+export async function middleware(request: NextRequest) {
 	const { cookies } = request
-
 	const sessionId = cookies.get('sessionid')
-
-	if (!sessionId) {
-		const url = request.nextUrl.clone()
-		url.searchParams.set('token', 'missing')
+	
+	if (sessionId) {
+		const response = NextResponse.next()
+		response.cookies.set('sessionid', sessionId.value)
+		return response
 	}
 
 	return NextResponse.next()
