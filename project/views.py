@@ -18,6 +18,8 @@ from project.service import generate_password
 
 from functools import wraps
 
+from project.utils import get_timezone
+
 
 def login_required(view_func):
     @wraps(view_func)
@@ -73,17 +75,24 @@ def register(request):
         email = data.get("email")
         telegram = data.get("telegram")
 
-        UserRegistration(username=username, email=email, telegram=telegram)
+        timezone = get_timezone(data)
+
+        UserRegistration(
+            username=username, email=email, telegram=telegram, timezone=timezone
+        )
         password = "password"
 
-        CustomUser.objects.create_user(username, email, password, telegram=telegram)
+        CustomUser.objects.create_user(
+            username, email, password, telegram=telegram, timezone=timezone
+        )
         return JsonResponse(Success().model_dump())
     except ValidationError as e:
         return JsonResponse(
-            ExceptionRequest(code=2, error=e.errors()[0]["loc"]).model_dump()
+            ExceptionRequest(code=2, error=e.errors()[0]["loc"]).model_dump(),
+            status=400,
         )
     except IntegrityError as e:
-        return JsonResponse(ExceptionRequest(error=str(e)).model_dump())
+        return JsonResponse(ExceptionRequest(error=str(e)).model_dump(), status=400)
 
 
 @require_POST
@@ -97,7 +106,9 @@ def change_password(request):
         send_email_password(email, password)
         return JsonResponse(Success().model_dump())
     except ValueError as e:
-        return JsonResponse(ExceptionRequest(code=6, error=str(e)).model_dump())
+        return JsonResponse(
+            ExceptionRequest(code=6, error=str(e)).model_dump(), status=418
+        )
 
 
 @require_POST
@@ -122,11 +133,13 @@ def user_detail_view(request):
         }
         return JsonResponse(Success(data=user_data).model_dump())
     except CustomUser.DoesNotExist:
-        return JsonResponse(ExceptionRequest(code=7, error="User not found", status=404))
+        return JsonResponse(
+            ExceptionRequest(code=7, error="User not found", status=404)
+        )
 
     except Exception as e:
         logger.opt(exception=e).critical("fsjhfdsjdhf")
-        return JsonResponse(ExceptionRequest(error=str(e)).model_dump())
+        return JsonResponse(ExceptionRequest(error=str(e)).model_dump(), status=500)
 
 
 @csrf_exempt

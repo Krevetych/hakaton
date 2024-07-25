@@ -18,3 +18,4 @@ class UserRegistration(BaseModel):
     username: str
     email: EmailStr
     telegram: str
+    timezone: str
