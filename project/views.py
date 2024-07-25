@@ -43,8 +43,8 @@ def home(request):
 def login_view(request):
     try:
         data = json.loads(request.body.decode())
-        email = data.get("email")
-        password = data.get("password")
+        email = data.get("email").strip()
+        password = data.get("password").strip()
 
         if user := authenticate(request, email=email, password=password):
             login(request, user)
@@ -71,9 +71,9 @@ def login_view(request):
 def register(request):
     try:
         data = json.loads(request.body.decode())
-        username = data.get("username")
-        email = data.get("email")
-        telegram = data.get("telegram")
+        username = data.get("username").strip()
+        email = data.get("email").strip()
+        telegram = data.get("telegram").strip()
 
         timezone = get_timezone(data)
 
