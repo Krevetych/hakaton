@@ -22,7 +22,7 @@ interface IHeaderButtons {
 export const HeaderButtons = ({ data }: IHeaderButtons) => {
 	const [open, setOpen] = useState(false)
 
-	console.log(data)
+	console.log(data?.data.email)
 
 	return (
 		<>
@@ -40,8 +40,8 @@ export const HeaderButtons = ({ data }: IHeaderButtons) => {
 							open ? 'opacity-100' : 'opacity-0'
 						}`}
 					>
-						{data ? (
-							<p>{data.data.email}</p>
+						{data?.data.email ? (
+							<p>{data?.data.email}</p>
 						) : (
 							<ul className='flex flex-col gap-y-2'>
 								{MENU.map(item => (
@@ -69,8 +69,8 @@ export const HeaderButtons = ({ data }: IHeaderButtons) => {
 				)}
 			</div>
 			<div className='hidden zed-lg:flex zed-lg:gap-x-3'>
-				{data ? (
-					<p>{data.data.email}</p>
+				{data?.data.email ? (
+					<p>{data?.data.email}</p>
 				) : (
 					MENU.map(item => (
 						<Modal key={item.title}>
