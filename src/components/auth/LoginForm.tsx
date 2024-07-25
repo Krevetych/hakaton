@@ -41,7 +41,7 @@ export const LoginForm = () => {
 		mutationFn: (data: TLoginFormState) => authService.login(data),
 		onSuccess: () => {
 			reset()
-			window.location.reload()
+			//window.location.reload()
 			queryClient.invalidateQueries({ queryKey: ['user'] })
 		}
 	})

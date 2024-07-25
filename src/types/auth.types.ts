@@ -4,6 +4,7 @@ interface IAuth {
 	email: string
 	username: string
 	telegram: string
+	offset: number
 	password: string
 }
 
@@ -12,9 +13,9 @@ interface IAuthResponse extends ISuccess {
 }
 
 export type TRegisterFormState = Omit<IAuth, 'password'>
-export type TLoginFormState = Omit<IAuth, 'login' | 'telegram'>
+export type TLoginFormState = Omit<IAuth, 'login' | 'telegram' | 'offset'>
 export type TChangePasswordFormState = Omit<
 	IAuth,
-	'login' | 'password' | 'telegram'
+	'login' | 'password' | 'telegram' | 'offset'
 >
 export type TAuthResponse = IAuthResponse

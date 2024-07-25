@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server'
 export async function middleware(request: NextRequest, response: NextResponse) {
 	const { cookies } = request
 
-	const sessionId = cookies.get('sessionId')
+	const sessionId = cookies.get('sessionid')
 
 	if (!sessionId) {
 		const url = request.nextUrl.clone()

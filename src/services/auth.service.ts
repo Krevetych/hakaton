@@ -28,7 +28,13 @@ class AuthService {
 	}
 
 	async register(data: TRegisterFormState): Promise<TAuthResponse> {
-		const response: TAuthResponse = await axiosZed.post(this.registerURL, data)
+		const offset = new Date().getTimezoneOffset()
+		const offsetInHours = offset / 60
+
+		const response: TAuthResponse = await axiosZed.post(this.registerURL, {
+			...data,
+			offset: offsetInHours
+		})
 
 		return response
 	}
