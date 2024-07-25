@@ -18,9 +18,9 @@ import { useAuth } from '@/hooks/useAuth'
 
 export const HeaderButtons = () => {
 	const [open, setOpen] = useState(false)
-	const {data, isLoading} = useAuth()
+	const {data, isLoading, isSuccess} = useAuth()
 
-	console.log('Header button:', data)
+	console.log('Header button:', data?.email)
 
 	return (
 		<>
@@ -40,7 +40,7 @@ export const HeaderButtons = () => {
 					>
 						{isLoading ? (
 							<p>Загрузка...</p>
-						) : data ? (
+						) : isSuccess && data ? (
 							<p>{data.email}</p>
 						) : (
 							<ul className='flex flex-col gap-y-2'>
@@ -71,7 +71,7 @@ export const HeaderButtons = () => {
 			<div className='hidden zed-lg:flex zed-lg:gap-x-3'>
 				{isLoading ? (
 					<p>Загрузка...</p>
-				) : data ? (
+				) : isSuccess && data ? (
 					<p>{data.email}</p>
 				) : (
 					MENU.map(item => (
