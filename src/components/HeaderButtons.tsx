@@ -22,7 +22,7 @@ interface IHeaderButtons {
 export const HeaderButtons = ({ data }: IHeaderButtons) => {
 	const [open, setOpen] = useState(false)
 
-	//console.log(data)
+	console.log(data)
 
 	return (
 		<>
