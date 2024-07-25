@@ -7,7 +7,9 @@ import { useAuth } from '@/hooks/useAuth'
 import { HeaderButtons } from './HeaderButtons'
 
 export const Header = () => {
-	const { data, loggedIn } = useAuth()
+	const { data } = useAuth()
+
+	console.log(data)
 
 	return (
 		<>
@@ -34,7 +36,7 @@ export const Header = () => {
 						/>
 					</Link>
 				</div>
-				<HeaderButtons data={data} loggedIn={loggedIn} />
+				<HeaderButtons data={data} />
 			</header>
 			<div className='flex items-center justify-center'>
 				<img

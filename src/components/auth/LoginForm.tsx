@@ -12,17 +12,22 @@ import { Heading } from '../Heading'
 import { Field } from '../ui/Field'
 
 import { authService } from '@/services/auth.service'
+import { toast } from 'sonner'
 
 export const LoginForm = () => {
-	const { register, handleSubmit, reset } = useForm<TLoginFormState>({
+	const {
+		register,
+		handleSubmit,
+		reset,
+		formState: { errors }
+	} = useForm<TLoginFormState>({
 		mode: 'onChange'
 	})
 
-	const { refresh } = useRouter()
 	const queryClient = useQueryClient()
 	const [isPasswordChanged, setIsPasswordChanged] = useState(false)
 
-	const { mutate: changePasswordMutate } = useMutation({
+	const { mutate: changePasswordMutate, error: passwordError } = useMutation({
 		mutationKey: ['changePassword'],
 		mutationFn: (data: TChangePasswordFormState) =>
 			authService.changePassword(data),
@@ -31,12 +36,12 @@ export const LoginForm = () => {
 		}
 	})
 
-	const { mutate: loginMutate } = useMutation({
+	const { mutate: loginMutate, error: loginError } = useMutation({
 		mutationKey: ['login'],
 		mutationFn: (data: TLoginFormState) => authService.login(data),
 		onSuccess: () => {
 			reset()
-			refresh()
+			window.location.reload()
 			queryClient.invalidateQueries({ queryKey: ['user'] })
 		}
 	})
@@ -55,6 +60,7 @@ export const LoginForm = () => {
 			onSubmit={handleSubmit(onSubmit)}
 		>
 			<Heading title='Авторизоваться' />
+
 			<div className='flex flex-col gap-y-5 w-full'>
 				<Field
 					id='email'
@@ -63,6 +69,8 @@ export const LoginForm = () => {
 					type='email'
 					{...register('email', { required: 'Email обязателен' })}
 				/>
+				{errors.email && <p className='text-red-500'>{errors.email.message}</p>}
+
 				{isPasswordChanged && (
 					<Field
 						id='password'
@@ -71,6 +79,13 @@ export const LoginForm = () => {
 						type='password'
 						{...register('password', { required: 'Password обязателен' })}
 					/>
+				)}
+				{errors.password && (
+					<p className='text-red-500'>{errors.password.message}</p>
+				)}
+				{loginError && <p className='text-red-500'>{loginError.message}</p>}
+				{passwordError && (
+					<p className='text-red-500'>{passwordError.message}</p>
 				)}
 				<Button className='font-black' color='secondary' type='submit'>
 					{isPasswordChanged ? 'Авторизоваться' : 'Получить пароль'}

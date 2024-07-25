@@ -1,2 +1,3 @@
-export const BASE_URL = 'https://backend.movie-rank.ru'
-export const API_URL = 'https://backend.movie-rank.ru/api/v2'
+//export const BASE_URL = 'https://backend.movie-rank.ru'
+export const BASE_URL = 'http://localhost:8000'
+export const API_URL = `${BASE_URL}/api/v2`

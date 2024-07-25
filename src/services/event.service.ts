@@ -1,6 +1,6 @@
 import { TEventResponse } from '@/types/event.types'
 
-import { axiosWithAuth, axiosZed } from '@/api/interceptors'
+import { axiosZed } from '@/api/interceptors'
 
 class EventService {
 	private URL = '/event'
@@ -14,7 +14,7 @@ class EventService {
 	}
 
 	async getUserEvents(): Promise<TEventResponse> {
-		const response: TEventResponse = await axiosWithAuth.get(this.userEventsURL)
+		const response: TEventResponse = await axiosZed.get(this.userEventsURL)
 
 		return response
 	}

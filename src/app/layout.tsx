@@ -1,10 +1,11 @@
 import cn from 'clsx'
 import type { Metadata } from 'next'
 import { Roboto } from 'next/font/google'
+import { Toaster } from 'sonner'
 
 import { Banner } from '@/components/Banner'
-//import TestComponent from '@/components/tests/TestComponents'
 
+//import TestComponent from '@/components/tests/TestComponents'
 import { SITE_NAME } from '@/constants/seo.constants'
 
 import './globals.css'
@@ -40,6 +41,7 @@ export default function RootLayout({
 					{children}
 					<Banner />
 					{/*<TestComponent />*/}
+					<Toaster theme='dark' position='bottom-right' duration={1500} />
 				</Providers>
 			</body>
 		</html>

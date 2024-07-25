@@ -17,11 +17,12 @@ import { Button } from './ui/Button'
 
 interface IHeaderButtons {
 	data: TUserResponse | undefined
-	loggedIn: boolean
 }
 
-export const HeaderButtons = ({ data, loggedIn }: IHeaderButtons) => {
+export const HeaderButtons = ({ data }: IHeaderButtons) => {
 	const [open, setOpen] = useState(false)
+
+	//console.log(data)
 
 	return (
 		<>
@@ -39,7 +40,7 @@ export const HeaderButtons = ({ data, loggedIn }: IHeaderButtons) => {
 							open ? 'opacity-100' : 'opacity-0'
 						}`}
 					>
-						{data && loggedIn ? (
+						{data ? (
 							<p>{data.data.email}</p>
 						) : (
 							<ul className='flex flex-col gap-y-2'>
@@ -68,7 +69,7 @@ export const HeaderButtons = ({ data, loggedIn }: IHeaderButtons) => {
 				)}
 			</div>
 			<div className='hidden zed-lg:flex zed-lg:gap-x-3'>
-				{data && loggedIn ? (
+				{data ? (
 					<p>{data.data.email}</p>
 				) : (
 					MENU.map(item => (
