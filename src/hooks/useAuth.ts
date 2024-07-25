@@ -4,7 +4,7 @@ import Cookies from 'js-cookie'
 import { userService } from '../services/user.service'
 
 export const useAuth = () => {
-	const sessionId = Cookies.get('sessionId')
+	const sessionId = Cookies.get('sessionid')
 
 	const { data, isLoading, isSuccess, isError } = useQuery({
 		queryKey: ['user'],
