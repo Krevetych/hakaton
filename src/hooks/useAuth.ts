@@ -6,6 +6,8 @@ import { userService } from '../services/user.service'
 export const useAuth = () => {
 	const sessionId = Cookies.get('sessionid')
 
+	console.log(sessionId)
+
 	const { data, isLoading, isSuccess, isError } = useQuery({
 		queryKey: ['user'],
 		queryFn: () => userService.getUser(),
