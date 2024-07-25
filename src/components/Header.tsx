@@ -9,7 +9,7 @@ import { HeaderButtons } from './HeaderButtons'
 export const Header = () => {
 	const { data } = useAuth()
 
-	console.log(data)
+	console.log("Header:", data?.data.email)
 
 	return (
 		<>
