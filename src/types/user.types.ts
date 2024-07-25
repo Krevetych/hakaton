@@ -9,7 +9,9 @@ interface UserData {
 }
 
 interface IUser extends ISuccess {
-	data: UserData
+	data: {
+		data: UserData
+	}
 }
 
 interface IUserSpam extends ISuccess {

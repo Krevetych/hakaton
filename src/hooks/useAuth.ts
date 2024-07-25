@@ -24,12 +24,14 @@ export const useAuth = () => {
 	const { data, isLoading, isSuccess, isError } = useQuery({
 		queryKey: ['user'],
 		queryFn: () => userService.getUser(),
+		
 		enabled: !!sessionId,
 		retry: false,
-		select: data => data.data
+		select: data => data.data.data
 	})
 
-	console.log('UseAuth:', data)
+	console.log('UseAuth:', data?.email)
+	console.log('UserAuth:', data?.username)
 
 	return {
 		data,
