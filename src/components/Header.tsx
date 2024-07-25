@@ -2,14 +2,9 @@
 
 import Link from 'next/link'
 
-import { useAuth } from '@/hooks/useAuth'
-
 import { HeaderButtons } from './HeaderButtons'
 
 export const Header = () => {
-	const { data, isLoading } = useAuth()
-
-	console.log("Header:", data?.data.email)
 
 	return (
 		<>
@@ -36,7 +31,7 @@ export const Header = () => {
 						/>
 					</Link>
 				</div>
-				<HeaderButtons data={data} isLoading={isLoading} />
+				<HeaderButtons />
 			</header>
 			<div className='flex items-center justify-center'>
 				<img

@@ -14,14 +14,11 @@ import {
 	ModalTrigger
 } from './ui/AnimatedModal'
 import { Button } from './ui/Button'
+import { useAuth } from '@/hooks/useAuth'
 
-interface IHeaderButtons {
-	data: TUserResponse | undefined
-	isLoading: boolean
-}
-
-export const HeaderButtons = ({ data, isLoading }: IHeaderButtons) => {
+export const HeaderButtons = () => {
 	const [open, setOpen] = useState(false)
+	const {data, isLoading} = useAuth()
 
 	console.log('Header button:', data)
 
@@ -44,7 +41,7 @@ export const HeaderButtons = ({ data, isLoading }: IHeaderButtons) => {
 						{isLoading ? (
 							<p>Загрузка...</p>
 						) : data ? (
-							<p>{data.data.email}</p>
+							<p>{data.email}</p>
 						) : (
 							<ul className='flex flex-col gap-y-2'>
 								{MENU.map(item => (
@@ -75,7 +72,7 @@ export const HeaderButtons = ({ data, isLoading }: IHeaderButtons) => {
 				{isLoading ? (
 					<p>Загрузка...</p>
 				) : data ? (
-					<p>{data.data.email}</p>
+					<p>{data.email}</p>
 				) : (
 					MENU.map(item => (
 						<Modal key={item.title}>

@@ -25,7 +25,8 @@ export const useAuth = () => {
 		queryKey: ['user'],
 		queryFn: () => userService.getUser(),
 		enabled: !!sessionId,
-		retry: false
+		retry: false,
+		select: data => data.data
 	})
 
 	console.log('UseAuth:', data)
