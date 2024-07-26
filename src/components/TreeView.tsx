@@ -1,35 +1,78 @@
 import { Popover, PopoverContent, PopoverTrigger } from '@nextui-org/popover'
 import { Tooltip } from '@nextui-org/tooltip'
+import { useQuery } from '@tanstack/react-query'
 import { useMediaQuery } from 'react-responsive'
 
 import { useIsClient } from '@/hooks/useIsClient'
 
 import { Ball } from './ui/Ball'
+import { eventService } from '@/services/event.service'
 
 interface ITree {
 	number: number
 	currentDate?: number
 }
 
+interface ITooltip {
+	number: number
+	title?: string
+	description?: string
+}
+
+const TooltipContent = ({ number, title, description }: ITooltip) => {
+	return (
+		<div>
+			<p>
+				{number}.{title}
+			</p>
+			<p>{description}</p>
+		</div>
+	)
+}
+
 export const TreeView = ({ number, currentDate }: ITree) => {
-	const isClient = useIsClient()
-	const isLG = useMediaQuery({ minWidth: 1024 })
+	const { data } = useQuery({
+		queryKey: ['events'],
+		queryFn: () => eventService.getAllEvents(),
+		retry: false,
+		select: data => data.data.data
+	})
+
+	// Ensure data exists and handle it correctly
+	const events = data || []
+
+	// Find the event corresponding to the given number
+	const event = events.find(item => {
+		const date = new Date(item.date_open)
+		return date.getDate() === number
+	})
 
 	const today = new Date().getDate()
 	if (currentDate === undefined) currentDate = today
-	const isPastOrToday = number <= currentDate
 
+	const days = events.map(item => {
+		const date = new Date(item.date_open)
+		return date.getDate()
+	})
+
+	const isClient = useIsClient()
+	const isLG = useMediaQuery({ minWidth: 1024 })
+
+	const isPastOrToday = number <= today
 	const ballSrc = isPastOrToday ? './ball2.png' : './ball.png'
 
-	const TooltipContent = (
-		<div className='w-72 max-h-[85vh] rounded-xl p-4'>
-			{number}, Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto
-			ducimus perspiciatis beatae nulla nam reiciendis necessitatibus voluptatem
-			id, dicta excepturi ipsa consectetur porro incidunt eius. Quas dolor culpa
-			officia perspiciatis tempore consectetur perferendis autem nesciunt
-			officiis. Eos eum aliquid maxime quisquam fugiat. Ex iusto non voluptas
-			sed illum numquam similique!
-		</div>
+	const tooltipContent = event ? (
+		<TooltipContent
+			number={number}
+			title={event.title}
+			description={event.description}
+		/>
+	) : (
+		<TooltipContent
+			number={number}
+			title='No Event'
+			description='No event details available for this date.'
+		/>
 	)
 
 	return (
@@ -37,7 +80,7 @@ export const TreeView = ({ number, currentDate }: ITree) => {
 			{isClient && isLG ? (
 				isPastOrToday ? (
 					<Tooltip
-						content={TooltipContent}
+						content={tooltipContent}
 						color='primary'
 						placement='top'
 						showArrow={true}
@@ -59,8 +102,8 @@ export const TreeView = ({ number, currentDate }: ITree) => {
 							<Ball number={number} src={ballSrc} isPast={isPastOrToday} />
 						</div>
 					</PopoverTrigger>
-					<PopoverContent className='w-72 max-h-[85vh] rounded-xl p-4'>
-						<p>{TooltipContent}</p>
+					<PopoverContent className='w-72 max-h-72 rounded-xl p-4 overflow-auto'>
+						{tooltipContent}
 					</PopoverContent>
 				</Popover>
 			) : (

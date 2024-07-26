@@ -13,8 +13,6 @@ export const useAuth = () => {
 			.find(row => row.startsWith('sessionid='))
 			?.split('=')[1]
 
-		console.log('SessionID: ', sessionId)
-
 		if (sessionId) {
 			localStorage.setItem('sessionid', sessionId)
 			setSessionId(sessionId)
@@ -24,14 +22,11 @@ export const useAuth = () => {
 	const { data, isLoading, isSuccess, isError } = useQuery({
 		queryKey: ['user'],
 		queryFn: () => userService.getUser(),
-		
+
 		enabled: !!sessionId,
 		retry: false,
 		select: data => data.data.data
 	})
-
-	console.log('UseAuth:', data?.email)
-	console.log('UserAuth:', data?.username)
 
 	return {
 		data,

@@ -6,5 +6,5 @@ export interface IButtonProps {
 export interface IBall {
 	number: number
 	src: string
-	isPast: boolean
+	isPast: boolean | undefined
 }

@@ -1,8 +1,8 @@
 import { ISuccess } from './success.types'
 
-interface UserData {
+export interface UserData {
 	username: string
-	spam_subscribe: boolean
+	spam_subcribe: boolean
 	email: string
 	telegram: string
 	date_joined: Date

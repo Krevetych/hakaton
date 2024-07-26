@@ -8,7 +8,9 @@ interface EventData {
 }
 
 interface IEvent extends ISuccess {
-	data: EventData[]
+	data: {
+		data: EventData[]
+	}
 }
 
 export type TEventResponse = IEvent
