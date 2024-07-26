@@ -24,7 +24,7 @@ export const ModalTrigger = ({
 	return (
 		<button
 			className={cn(
-				'rounded-md text-black dark:text-white text-center relative overflow-hidden',
+				'rounded-md text-white text-center relative overflow-hidden',
 				className
 			)}
 			onClick={() => setOpen(true)}
@@ -77,7 +77,7 @@ export const ModalBody = ({
 					<motion.div
 						ref={modalRef}
 						className={cn(
-							'min-h-[50%] max-h-[90%] md:max-w-[40%] bg-white dark:bg-bg border border-transparent dark:border-neutral-800 md:rounded-2xl relative z-50 flex flex-col flex-1 overflow-hidden',
+							'min-h-[50%] max-h-[90%] md:max-w-[40%] bg-bg border border-bg md:rounded-2xl relative z-50 flex flex-col flex-1 overflow-hidden',
 							className
 						)}
 						initial={{
@@ -140,7 +140,7 @@ export const ModalFooter = ({
 	return (
 		<div
 			className={cn(
-				'flex justify-end p-4 bg-gray-100 dark:bg-neutral-900',
+				'flex justify-end p-4 dark:bg-neutral-900',
 				className
 			)}
 		>

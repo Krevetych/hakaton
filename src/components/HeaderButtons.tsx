@@ -72,14 +72,14 @@ export const HeaderButtons = () => {
 									<div>
 										<p>{data.email}</p>
 										<SpamButton
-											onClick={data.spam_subcribe ? disabledSpam : enabledSpam}
+											onClick={data.spam_subscribe ? disabledSpam : enabledSpam}
 											className={
-												data.spam_subcribe
+												data.spam_subscribe
 													? 'border-red-500 text-red-500'
 													: 'border-green-500 text-green-500'
 											}
 											title={
-												data.spam_subcribe
+												data.spam_subscribe
 													? 'Отключить рассылку'
 													: 'Подключить рассылку'
 											}
@@ -120,14 +120,14 @@ export const HeaderButtons = () => {
 								<p>{data.email}</p>
 								{openPC && (
 									<SpamButton
-										onClick={data.spam_subcribe ? disabledSpam : enabledSpam}
+										onClick={data.spam_subscribe ? disabledSpam : enabledSpam}
 										className={
-											data.spam_subcribe
+											data.spam_subscribe
 												? 'border-red-500 text-red-500'
 												: 'border-green-500 text-green-500'
 										}
 										title={
-											data.spam_subcribe
+											data.spam_subscribe
 												? 'Отключить рассылку'
 												: 'Подключить рассылку'
 										}

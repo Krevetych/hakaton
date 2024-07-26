@@ -2,7 +2,7 @@ import { ISuccess } from './success.types'
 
 export interface UserData {
 	username: string
-	spam_subcribe: boolean
+	spam_subscribe: boolean
 	email: string
 	telegram: string
 	date_joined: Date

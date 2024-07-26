@@ -21,11 +21,12 @@ interface ITooltip {
 
 const TooltipContent = ({ number, title, description }: ITooltip) => {
 	return (
-		<div>
-			<p>
-				{number}.{title}
+		<div className='flex flex-col gap-y-2'>
+			<p className='font-semibold zed-lg:text-lg'>
+				<span>День {number}</span>: {" "}{title}
 			</p>
-			<p>{description}</p>
+			<hr />
+			<p className='zed-lg:text-lg'>{description}</p>
 		</div>
 	)
 }
@@ -38,10 +39,8 @@ export const TreeView = ({ number, currentDate }: ITree) => {
 		select: data => data.data.data
 	})
 
-	// Ensure data exists and handle it correctly
 	const events = data || []
 
-	// Find the event corresponding to the given number
 	const event = events.find(item => {
 		const date = new Date(item.date_open)
 		return date.getDate() === number
