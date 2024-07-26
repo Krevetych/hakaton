@@ -126,7 +126,7 @@ def user_detail_view(request):
         user = CustomUser.objects.get(pk=user_id)
         user_data = {
             "username": user.username,
-            "spam_subcribe": user.spam_subcribe,
+            "spam_subscribe": user.spam_subscribe,
             "email": user.email,
             "telegram": user.telegram,
             "date_joined": user.date_joined,
@@ -147,7 +147,7 @@ def user_detail_view(request):
 @login_required
 def disable_event_spam(request):
     user_id = request.session.get("_auth_user_id")
-    CustomUser.objects.filter(pk=user_id).update(spam_subcribe=False)
+    CustomUser.objects.filter(pk=user_id).update(spam_subscribe=False)
     return JsonResponse(Success().model_dump())
 
 
@@ -156,7 +156,7 @@ def disable_event_spam(request):
 @login_required
 def enable_event_spam(request):
     user_id = request.session.get("_auth_user_id")
-    CustomUser.objects.filter(pk=user_id).update(spam_subcribe=True)
+    CustomUser.objects.filter(pk=user_id).update(spam_subscribe=True)
     return JsonResponse(Success().model_dump())
 
 
@@ -165,6 +165,7 @@ def get_all_events(request):
     logger.debug(f"{events = }")
     events_data = [
         {
+            "id": event["id"],
             "title": event["title"],
             "description": event["description"],
             "description_over": event["description_over"],
@@ -183,7 +184,8 @@ def get_events_for_user(request):
     events = Event.objects.filter(date_open=datetime.now(user_timezone))
 
     events_data = [
-        {
+        {   
+            "id": event.id,
             "title": event.title,
             "description": event.description,
             "description_over": event.description_over,

@@ -4,7 +4,7 @@ from .models import CustomUser, Event
 
 class CustomUserAdmin(UserAdmin):
     model = CustomUser
-    list_display = ('email', 'spam_subcribe', 'is_staff', 'is_active',)
+    list_display = ('email', 'spam_subscribe', 'is_staff', 'is_active', "timezone")
     list_filter = ('is_staff', 'is_active',)
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
