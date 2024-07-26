@@ -79,7 +79,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     last_recommendation_sent = models.DateTimeField(auto_now_add=True)
 
-    spam_subcribe = models.BooleanField(default=True)
+    spam_subscribe = models.BooleanField(default=True)
 
     objects = CustomUserManager()
 
@@ -87,15 +87,15 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = ["username"]
 
     def __str__(self):
-        return f"{self.username} {self.spam_subcribe}"
+        return f"{self.username} {self.spam_subscribe}"
 
 
 class Event(models.Model):
     '''Model definition for ModelName.'''
 
     title = models.CharField(max_length=200)
-    description = models.CharField(max_length=255)
-    description_over = models.CharField(max_length=255, blank=True)
+    description = models.TextField()
+    description_over = models.TextField(blank=True)
 
     date_open = models.DateField()
 

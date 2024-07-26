@@ -37,7 +37,7 @@
 </head>
 <body>
     <div class="container">
-        <img src="https://example.com/logo.png" alt="Логотип компании" style="width: 100%; max-width: 200px;">
+        <img src="https://hakaton.movie-rank.ru/logo.svg" alt="Логотип компании" style="width: 100%; max-width: 200px;">
         <h1>Новые рекомендации доступны!</h1>
         <p>Мы рады сообщить вам, что появились новые рекомендации, которые могут вас заинтересовать.</p>
         <p>Не упустите возможность ознакомиться с ними на нашем сайте.</p>
@@ -45,8 +45,15 @@
         
         <div class="footer">
             <p><a href="{% url 'disable-even-spam' %}">Отписаться от рассылки</a></p>
-            <p>Посетите наш сайт: <a href="https://example.com">example.com</a></p>
+            <p>Посетите наш сайт: <a href="https://hakaton.movie-rank.ru">hakaton.movie-rank.ru</a></p>
         </div>
     </div>
+
+    <script>
+        document.getElementById('unsubscribe-link').addEventListener('click', function(event) {
+            event.preventDefault(); // Предотвращаем переход по ссылке
+            document.getElementById('unsubscribe-form').submit(); // Отправляем форму
+        });
+    </script>
 </body>
 </html>
