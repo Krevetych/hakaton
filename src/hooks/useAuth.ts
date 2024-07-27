@@ -32,6 +32,6 @@ export const useAuth = () => {
 		data,
 		isLoading,
 		isSuccess,
-		isError
+		isError,
 	}
 }

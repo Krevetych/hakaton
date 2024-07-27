@@ -7,16 +7,20 @@ import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
 import Loader from '@/components/ui/Loader'
 
+import { useAuth } from '@/hooks/useAuth'
+
 import { eventService } from '@/services/event.service'
 
 export const Event = () => {
 	const { id } = useParams()
+	const { data: userData } = useAuth()
 
 	const { data, isLoading } = useQuery({
 		queryKey: ['eventId'],
 		queryFn: () => eventService.getById(eventId),
-		enabled: !!id,
-		select: data => data.data.data
+		enabled: !!id && !!userData,
+		select: data => data.data.data,
+		retry: false
 	})
 
 	if (typeof id !== 'string') {

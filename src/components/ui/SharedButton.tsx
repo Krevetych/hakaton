@@ -29,7 +29,7 @@ export const SharedButton = ({ url }: { url: string }) => {
 	}
 
 	return (
-		<div>
+		<div className='cursor-pointer transition-colors active:text-quaternary hover:text-quaternary'>
 			{isMD ? (
 				<SquareArrowOutUpRight size={16} onClick={() => handleShare(url)} />
 			) : (
