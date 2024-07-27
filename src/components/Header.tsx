@@ -5,16 +5,15 @@ import Link from 'next/link'
 import { HeaderButtons } from './HeaderButtons'
 
 export const Header = () => {
-
 	return (
 		<>
 			<header className=' top-0 left-0 right-0 z-10 flex justify-between items-center p-3 relative zed-lg:p-10'>
-				<div className='zed-lg:relative'>
+				<Link href='/' className='cursor-pointer zed-lg:relative'>
 					<img src='/logo.svg' alt='Logo' className='w-[80px] zed-lg:w-full' />
 					<p className='text-xs zed-lg:absolute zed-lg:-top-1 zed-lg:-right-16 zed-lg:rotate-[35deg]'>
 						for the hakaton
 					</p>
-				</div>
+				</Link>
 				<div className='flex items-center'>
 					<p className='hidden text-sm font-semibold zed-xl:block'>
 						При поддержке:{' '}
