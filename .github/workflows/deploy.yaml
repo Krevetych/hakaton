@@ -16,13 +16,19 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '22' # Укажите версию Node.js, используемую на сервере
+          node-version: '22'
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - name: Check pnpm version
+        run: pnpm --version
 
       - name: Install dependencies
-        run: npm install
+        run: pnpm install
 
       - name: Run build
-        run: npm run build
+        run: pnpm build
         continue-on-error: true
 
       - name: Set up SSH
