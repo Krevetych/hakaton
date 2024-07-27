@@ -16,7 +16,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'  # Убедитесь, что вы указываете нужную версию Node.js
+          node-version: '22' # Укажите версию Node.js, используемую на сервере
 
       - name: Install dependencies
         run: pnpm install
