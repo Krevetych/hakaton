@@ -15,4 +15,5 @@ urlpatterns = [
 
     path("event/all/", get_all_events, name="all-events"), #GET
     path("event/user/", get_events_for_user, name="events-for-user"), #GET
+    path("event/<str:id>/", get_events_by_id, name="events-for-user"), #GET
 ]

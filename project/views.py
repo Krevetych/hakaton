@@ -194,3 +194,17 @@ def get_events_for_user(request):
         for event in events
     ]
     return JsonResponse(Success(data=events_data).model_dump())
+
+
+@login_required
+def get_events_by_id(request, id: str) -> Success:
+    event = Event.objects.filter(id=int(id)).first()
+    events_data = {   
+            "id": event.id,
+            "title": event.title,
+            "description": event.description,
+            "description_over": event.description_over,
+            "date_open": event.date_open,
+        }
+ 
+    return JsonResponse(Success(data=events_data).model_dump())
