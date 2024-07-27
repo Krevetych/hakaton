@@ -7,8 +7,6 @@ import { MENU } from '@/constants/menu.constants'
 
 import { useAuth } from '@/hooks/useAuth'
 
-import { LoginForm } from './auth/LoginForm'
-import { RegisterForm } from './auth/RegisterForm'
 import {
 	Modal,
 	ModalBody,
@@ -19,6 +17,8 @@ import { Button } from './ui/Button'
 import Loader from './ui/Loader'
 import { SpamButton } from './ui/SpamButton'
 import { userService } from '@/services/user.service'
+import { RegisterForm } from './auth/RegisterForm'
+import { LoginForm } from './auth/LoginForm'
 
 export const HeaderButtons = () => {
 	const [open, setOpen] = useState(false)

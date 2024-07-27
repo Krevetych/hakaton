@@ -1,6 +1,7 @@
 import { ISuccess } from './success.types'
 
 interface EventData {
+	id: number
 	title: string
 	description: string
 	description_over?: string

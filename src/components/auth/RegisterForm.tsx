@@ -1,15 +1,13 @@
 import { Button } from '@nextui-org/button'
 import { useMutation } from '@tanstack/react-query'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { toast } from 'sonner'
 
 import { TRegisterFormState } from '@/types/auth.types'
 
-import { Heading } from '../Heading'
-import { CheckboxButton } from '../ui/CheckboxButton'
-import { Field } from '../ui/Field'
+import { Heading } from '../../components/Heading'
+import { CheckboxButton } from '../../components/ui/CheckboxButton'
+import { Field } from '../../components/ui/Field'
 
 import { authService } from '@/services/auth.service'
 
