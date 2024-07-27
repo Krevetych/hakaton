@@ -49,10 +49,10 @@ jobs:
           ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOF'
             cd ${{ secrets.SERVER_PATH }}
             git pull
-            docker stop hakaton || true
-            docker rm hakaton || true
-            docker build -t hakaton .
-            docker run -d -p 3000:3000 --name hakaton hakaton
+            pnpm install
+            pnpm build
+            screen -S hakaton-front -X quit || true
+            screen -S hakaton-front -dm bash -c 'pnpm start'
           EOF
 
       - name: Rollback
@@ -61,8 +61,8 @@ jobs:
           ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOF'
             cd ${{ secrets.SERVER_PATH }}
             git reset --hard HEAD~1
-            docker stop hakaton || true
-            docker rm hakaton || true
-            docker build -t hakaton .
-            docker run -d -p 3000:3000 --name hakaton hakaton
+            pnpm install
+            pnpm build
+            screen -S hakaton-front -X quit || true
+            screen -S hakaton-front -dm bash -c 'pnpm start'
           EOF
