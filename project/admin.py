@@ -4,11 +4,11 @@ from .models import CustomUser, Event
 
 class CustomUserAdmin(UserAdmin):
     model = CustomUser
-    list_display = ('email', 'spam_subscribe', 'is_staff', 'is_active', "timezone")
+    list_display = ('email', 'spam_subscribe', 'is_staff', 'is_active', "timezone", "recommendation_sent_hour")
     list_filter = ('is_staff', 'is_active',)
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        ('Personal info', {'fields': ('username', 'telegram')}),
+        ('Personal info', {'fields': ('username', 'telegram', "recommendation_sent_hour")}),
         ('Permissions', {'fields': ('is_staff', 'is_active')}),
     )
     add_fieldsets = (
