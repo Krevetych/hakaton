@@ -4,11 +4,11 @@ import { useQuery } from '@tanstack/react-query'
 import { Copy } from 'lucide-react'
 import Link from 'next/link'
 import { useMediaQuery } from 'react-responsive'
-import { toast } from 'sonner'
 
 import { useIsClient } from '@/hooks/useIsClient'
 
 import { Ball } from './ui/Ball'
+import { SharedButton } from './ui/SharedButton'
 import { generateSlug } from '@/lib/utils'
 import { eventService } from '@/services/event.service'
 
@@ -22,15 +22,6 @@ interface ITooltip {
 	title: string
 	description: string
 	slug?: string
-}
-
-const copyToClipboard = async (url: string) => {
-	try {
-		await navigator.clipboard.writeText(url)
-		toast.success('Ссылка скопирована в буфер обмена')
-	} catch (error) {
-		toast.error('Не удалось скопировать ссылку в буфер обмена')
-	}
 }
 
 const TooltipContent = ({ number, title, description, slug }: ITooltip) => {
@@ -47,21 +38,15 @@ const TooltipContent = ({ number, title, description, slug }: ITooltip) => {
 			<hr />
 			<p className='zed-lg:text-lg'>{truncatedDescription}</p>
 			{slug && (
-				<div>
+				<div className='flex gap-x-2 items-center'>
 					<Link
 						href={`/events/${slug}`}
 						target='_blank'
-						className='mt-2 text-blue-500 hover:underline'
+						className='text-quaternary hover:underline'
 					>
 						Подробнее
 					</Link>
-					<button
-						onClick={() =>
-							copyToClipboard(`${window.location.href}events/${slug}`)
-						}
-					>
-						<Copy />
-					</button>
+					<SharedButton url={`${window.location.href}events/${slug}`} />
 				</div>
 			)}
 		</div>
