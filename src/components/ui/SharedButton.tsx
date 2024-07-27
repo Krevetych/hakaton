@@ -3,7 +3,7 @@ import { useMediaQuery } from 'react-responsive'
 import { toast } from 'sonner'
 
 export const SharedButton = ({ url }: { url: string }) => {
-	const isMD = useMediaQuery({ minWidth: 425 })
+	const isMD = useMediaQuery({ maxWidth: 425 })
 
 	const handleCopy = (url: string) => {
 		try {
