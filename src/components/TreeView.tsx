@@ -1,8 +1,10 @@
 import { Popover, PopoverContent, PopoverTrigger } from '@nextui-org/popover'
 import { Tooltip } from '@nextui-org/tooltip'
 import { useQuery } from '@tanstack/react-query'
+import { Copy } from 'lucide-react'
 import Link from 'next/link'
 import { useMediaQuery } from 'react-responsive'
+import { toast } from 'sonner'
 
 import { useIsClient } from '@/hooks/useIsClient'
 
@@ -22,6 +24,15 @@ interface ITooltip {
 	slug?: string
 }
 
+const copyToClipboard = async (url: string) => {
+	try {
+		await navigator.clipboard.writeText(url)
+		toast.success('Ссылка скопирована в буфер обмена')
+	} catch (error) {
+		toast.error('Не удалось скопировать ссылку в буфер обмена')
+	}
+}
+
 const TooltipContent = ({ number, title, description, slug }: ITooltip) => {
 	const truncatedDescription =
 		description.length > 200
@@ -36,13 +47,22 @@ const TooltipContent = ({ number, title, description, slug }: ITooltip) => {
 			<hr />
 			<p className='zed-lg:text-lg'>{truncatedDescription}</p>
 			{slug && (
-				<Link
-					href={`/events/${slug}`}
-					target='_blank'
-					className='mt-2 text-blue-500 hover:underline'
-				>
-					Подробнее
-				</Link>
+				<div>
+					<Link
+						href={`/events/${slug}`}
+						target='_blank'
+						className='mt-2 text-blue-500 hover:underline'
+					>
+						Подробнее
+					</Link>
+					<button
+						onClick={() =>
+							copyToClipboard(`${window.location.href}events/${slug}`)
+						}
+					>
+						<Copy />
+					</button>
+				</div>
 			)}
 		</div>
 	)

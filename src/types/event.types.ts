@@ -14,4 +14,11 @@ interface IEvent extends ISuccess {
 	}
 }
 
+interface ISingleEvent extends ISuccess {
+	data: {
+		data: EventData
+	}
+}
+
 export type TEventResponse = IEvent
+export type TSingleEventResponse = ISingleEvent
