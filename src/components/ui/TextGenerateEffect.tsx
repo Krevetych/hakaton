@@ -14,7 +14,9 @@ export const TextGenerateEffect = ({
 }) => {
 	const [scope, animate] = useAnimate()
 	let wordsArray = words.split(' ')
+
 	useEffect(() => {
+		// Анимация выполняется при монтировании компонента
 		animate(
 			'span',
 			{
@@ -25,7 +27,7 @@ export const TextGenerateEffect = ({
 				delay: stagger(0.2)
 			}
 		)
-	}, [scope.current])
+	}, [animate]) // Зависимость только от animate
 
 	const renderWords = () => {
 		return (
@@ -44,7 +46,7 @@ export const TextGenerateEffect = ({
 	return (
 		<div className={cn('font-bold', className)}>
 			<div className='mt-4'>
-				<div className=' leading-snug tracking-wide'>{renderWords()}</div>
+				<div className='leading-snug tracking-wide'>{renderWords()}</div>
 			</div>
 		</div>
 	)

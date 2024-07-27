@@ -7,6 +7,7 @@ import { useMediaQuery } from 'react-responsive'
 import { useIsClient } from '@/hooks/useIsClient'
 
 import { Ball } from './ui/Ball'
+import { generateSlug } from '@/lib/utils'
 import { eventService } from '@/services/event.service'
 
 interface ITree {
@@ -16,46 +17,32 @@ interface ITree {
 
 interface ITooltip {
 	number: number
-	title?: string
-	description?: string
-	description_over?: string
-	eventId?: number
+	title: string
+	description: string
+	slug?: string
 }
 
-const TooltipContent = ({
-	number,
-	title,
-	description,
-	description_over,
-	eventId
-}: ITooltip) => {
-	const showMore = description_over && description_over.length > 0
-	const isLongText =
-		(description?.length || 0) + (description_over?.length || 0) > 250
+const TooltipContent = ({ number, title, description, slug }: ITooltip) => {
+	const truncatedDescription =
+		description.length > 200
+			? `${description.substring(0, 200)}...`
+			: description
 
 	return (
-		<div className='flex flex-col gap-y-2 h-fit'>
-			<p className='font-semibold text-lg'>
+		<div className='flex flex-col gap-y-2'>
+			<p className='font-semibold zed-lg:text-lg'>
 				<span>День {number}</span>: {title}
 			</p>
 			<hr />
-			<p className='text-lg'>
-				{description}
-				{isLongText && '...'}
-			</p>
-			{showMore && (
-				<>
-					<p className='text-lg'>
-						{description_over?.substring(0, 200)}
-						{description_over?.length > 20 && '...'}
-					</p>
-					<Link
-						href={`/events/${eventId}`}
-						className='text-white hover:underline mt-2'
-					>
-						Подробнее
-					</Link>
-				</>
+			<p className='zed-lg:text-lg'>{truncatedDescription}</p>
+			{slug && (
+				<Link
+					href={`/events/${slug}`}
+					target='_blank'
+					className='mt-2 text-blue-500 hover:underline'
+				>
+					Подробнее
+				</Link>
 			)}
 		</div>
 	)
@@ -79,19 +66,25 @@ export const TreeView = ({ number, currentDate }: ITree) => {
 	const today = new Date().getDate()
 	if (currentDate === undefined) currentDate = today
 
+	events.map(item => {
+		const date = new Date(item.date_open)
+		return date.getDate()
+	})
+
 	const isClient = useIsClient()
 	const isLG = useMediaQuery({ minWidth: 1024 })
 
 	const isPastOrToday = number <= today
-	const ballSrc = isPastOrToday ? './ball2.png' : './ball.png'
+	const ballSrc = isPastOrToday ? '/ball2.png' : '/ball.png'
+
+	const slug = generateSlug(event?.id, number)
 
 	const tooltipContent = event ? (
 		<TooltipContent
 			number={number}
 			title={event.title}
 			description={event.description}
-			description_over={event.description_over}
-			eventId={event.id}
+			slug={slug}
 		/>
 	) : (
 		<TooltipContent
@@ -110,7 +103,7 @@ export const TreeView = ({ number, currentDate }: ITree) => {
 						color='primary'
 						placement='top'
 						showArrow={true}
-						className='w-72 rounded-xl p-4'
+						className='w-72 max-h-[85vh] rounded-xl p-4'
 					>
 						<div className='relative cursor-pointer'>
 							<Ball number={number} src={ballSrc} isPast={isPastOrToday} />
@@ -128,7 +121,7 @@ export const TreeView = ({ number, currentDate }: ITree) => {
 							<Ball number={number} src={ballSrc} isPast={isPastOrToday} />
 						</div>
 					</PopoverTrigger>
-					<PopoverContent className='w-72 rounded-xl p-4'>
+					<PopoverContent className='w-72 max-h-72 rounded-xl p-4 overflow-auto'>
 						{tooltipContent}
 					</PopoverContent>
 				</Popover>

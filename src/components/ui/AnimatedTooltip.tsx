@@ -7,6 +7,7 @@ import {
 	useSpring,
 	useTransform
 } from 'framer-motion'
+import Image from 'next/image'
 import React, { useState } from 'react'
 
 export const AnimatedTooltip = ({
@@ -76,7 +77,7 @@ export const AnimatedTooltip = ({
 							</motion.div>
 						)}
 					</AnimatePresence>
-					<img
+					<Image
 						onMouseMove={handleMouseMove}
 						height={100}
 						width={100}
