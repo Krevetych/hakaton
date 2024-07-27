@@ -13,7 +13,7 @@ Hakaton Project - это проект, который использует Djang
 ## Установка
 1. Клонируйте репозиторий:
     ```sh
-    git clone https://github.com/yourusername/hakaton.git
+    git clone https://github.com/Krevetych/hakaton.git
     cd hakaton
     ```
 
