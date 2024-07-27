@@ -77,6 +77,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
     date_joined = models.DateTimeField(auto_now_add=True)
 
+    recommendation_sent_hour = models.IntegerField(default=0, blank=True, null=True, unique=False)
     last_recommendation_sent = models.DateTimeField(auto_now_add=True)
 
     spam_subscribe = models.BooleanField(default=True)

@@ -18,7 +18,8 @@ from project.service import generate_password
 
 from functools import wraps
 
-from project.utils import get_timezone
+from project.tasks import send_email_password_celery
+from project.utils import get_recommendation_sent_hour, get_timezone
 
 
 def login_required(view_func):
@@ -76,6 +77,7 @@ def register(request):
         telegram = data.get("telegram").strip()
 
         timezone = get_timezone(data)
+        timezone_rec = get_recommendation_sent_hour(data)
 
         UserRegistration(
             username=username, email=email, telegram=telegram, timezone=timezone
@@ -83,7 +85,7 @@ def register(request):
         password = "password"
 
         CustomUser.objects.create_user(
-            username, email, password, telegram=telegram, timezone=timezone
+            username, email, password, telegram=telegram, timezone=timezone, recommendation_sent_hour=timezone_rec
         )
         return JsonResponse(Success().model_dump())
     except ValidationError as e:
@@ -103,7 +105,8 @@ def change_password(request):
         email = data.get("email")
         password = generate_password()
         CustomUser.objects.change_password(email, password)
-        send_email_password(email, password)
+        # send_email_password(email, password)
+        send_email_password_celery.delay(email, password)
         return JsonResponse(Success().model_dump())
     except ValueError as e:
         return JsonResponse(
