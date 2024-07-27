@@ -29,7 +29,7 @@ jobs:
 
       - name: Run build
         run: pnpm build
-        continue-on-error: true
+        continue-on-error: false
 
       - name: Set up SSH
         run: |
@@ -43,12 +43,27 @@ jobs:
       - name: Check SSH connection
         run: ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "echo 'SSH connection successful'"
 
+      - name: Upload Build Artifacts
+        if: success()
+        run: |
+          rsync -avz --delete ./out/ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:${{ secrets.SERVER_PATH }}/
+
       - name: Deploy
         if: success()
         run: |
-          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "cd ${{ secrets.SERVER_PATH }} && git pull && pnpm install && pnpm start"
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOF'
+            cd ${{ secrets.SERVER_PATH }}
+            screen -S hakaton-front -X quit || true
+            screen -S hakaton-front -dm bash -c 'pnpm start'
+          EOF
 
       - name: Rollback
         if: failure()
         run: |
-          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "cd ${{ secrets.SERVER_PATH }} && git reset --hard HEAD~1 && pnpm install && pnpm start"
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOF'
+            cd ${{ secrets.SERVER_PATH }}
+            git reset --hard HEAD~1
+            pnpm install
+            screen -S hakaton-front -X quit || true
+            screen -S hakaton-front -dm bash -c 'pnpm start'
+          EOF
