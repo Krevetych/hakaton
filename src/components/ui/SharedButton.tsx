@@ -23,17 +23,23 @@ export const SharedButton = ({ url }: { url: string }) => {
 				})
 				toast.success('Вы поделились ссылкой')
 			} catch (error) {
-				toast.error('Не удалось поделиться ссылкой')
+				toast.error('Не удалось поделиться ссылкой')
 			}
 		}
 	}
 
 	return (
-		<div className='cursor-pointer transition-colors active:text-quaternary hover:text-quaternary'>
+		<div className='tooltip cursor-pointer transition-colors active:text-quaternary hover:text-quaternary'>
 			{isMD ? (
-				<SquareArrowOutUpRight size={16} onClick={() => handleShare(url)} />
+				<div>
+					<SquareArrowOutUpRight size={16} onClick={() => handleShare(url)} />
+					<div className='tooltiptext'>Поделиться</div>
+				</div>
 			) : (
-				<Copy size={16} onClick={() => handleCopy(url)} />
+				<>
+					<Copy size={16} onClick={() => handleCopy(url)} />
+					<div className='tooltiptext'>Скопировать</div>
+				</>
 			)}
 		</div>
 	)
