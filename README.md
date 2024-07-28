@@ -29,8 +29,8 @@
 1.  Клонируйте репозиторий:
 
 ```sh
-git clone {repo} -b frontend
-cd {repo}
+git clone https://gitflic.ru/project/ev3rgarden/hakaton.git -b frontend
+cd hakaton
 ```
 
 2.  Установите необходимые зависимости и соберите проект:
