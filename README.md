@@ -22,34 +22,34 @@
 1. Базовая, с использование Node.js и npm (Классический)
 2. Запуск Docker контенера (Более быстрый и легкий)
 
-#### Базовый запуск
+### Базовый запуск
 
 **Убедитесь, что у вас установлены [Node.js](https://nodejs.org) и [npm](https://www.npmjs.com/)**
 
 1.  Клонируйте репозиторий:
 
-        ```sh
-        git clone {repo} -b frontend
-        cd {repo}
-        ```
+```sh
+git clone {repo} -b frontend
+cd {repo}
+```
 
 2.  Установите необходимые зависимости и соберите проект:
 
-        ```sh
-        npm install
-        npm run build
-        ```
+```sh
+npm install
+npm run build
+```
 
 3.  Запустите проект:
 
-        ```sh
-        npm run start
-        ```
+```sh
+npm run start
+```
 
-    Приложение будет доступно по адресу `http:localhost:3000`
-		Для остановки процесса используйте команду `Ctrl+C`
+Приложение будет доступно по адресу `http:localhost:3000`
+Для остановки процесса используйте команду `Ctrl+C`
 
-#### Запуск через Docker
+### Запуск через Docker
 
 **Убедитесь, что у вас установлен [Docker](https://www.docker.com/)**
 
@@ -57,20 +57,20 @@
 
 2. Соберите Docker контейнер
 	
-		```sh
-		docker build -t hakaton .
-		``
+```sh
+docker build -t hakaton .
+```
 
 3. Запустите проект:
 
-		```sh
-		docker run -d -p 3000:3000 --name hakaton hakaton
-		```
+```sh
+docker run -d -p 3000:3000 --name hakaton hakaton
+```
 
-	Приложение будет доступно по адресу `http:localhost:3000`
-	Для остановки процесса используйте команду `docker stop hakaton`
-	Для просмотра контейнеров - `docker ps -a`
-	Для удаления контейнера - `docker rm {CONTAINER_ID}`
+Приложение будет доступно по адресу `http:localhost:3000`
+Для остановки процесса используйте команду `docker stop hakaton`
+Для просмотра контейнеров - `docker ps -a`
+Для удаления контейнера - `docker rm {CONTAINER_ID}`
 
 ## Дополнительная информация
 **Разработанно специально для хакатона "IT-Вызов" [корпорацией добра](https://youtu.be/dQw4w9WgXcQ?si=bASYzy9cOjwbunOy), не подлежит переиспользованию**
