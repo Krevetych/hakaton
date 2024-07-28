@@ -21,6 +21,7 @@ const config: Config = {
 				zed: '320px',
 				'zed-lg': '1024px',
 				'zed-xl': '1280px',
+				'zed-plus': '1540px',
 				'zed-max': '1920px'
 			}
 		}

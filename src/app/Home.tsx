@@ -12,7 +12,7 @@ import { AdventComponent } from '@/components/pages/AdventComponent'
 import { MainComponent } from '@/components/pages/MainComponent'
 
 export function Home() {
-	const isXL = useMediaQuery({ minWidth: 1280 })
+	const isXL = useMediaQuery({ minWidth: 1540 })
 
 	useEffect(() => {
 		if (!isXL) return
@@ -34,17 +34,17 @@ export function Home() {
 	}, [isXL])
 
 	return (
-		<div className='overflow-hidden'>
+		<div className='overflow-hidden flex flex-col gap-y-16'>
 			<SnowfallComponent />
-			<section className='zed-xl:h-screen'>
+			<section className='zed-plus:h-screen'>
 				<Header />
 				<MainComponent />
 				<Forest />
 			</section>
-			<section className='zed-xl:h-screen'>
+			<section className='zed-plus:h-screen'>
 				<AdventComponent />
 			</section>
-			<section className='zed-xl:h-screen'>
+			<section className='zed-plus:h-screen'>
 				<About />
 				<Footer />
 			</section>
