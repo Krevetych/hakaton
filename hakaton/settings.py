@@ -1,5 +1,5 @@
 import os
-from celery.schedules import crontab
+from celery.schedules import crontab, schedules
 
 """
 Django settings for hakaton project.
@@ -25,42 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "django-insecure-@#@gp@2=a0i1_7#5u5sod*xny$@!#@ii(4ebq@==2_d52&a$r)"
 
-DEBUG = False
-
-ALLOWED_HOSTS = ["backend.movie-rank.ru", "localhost", "hakaton.movie-rank.ru"]
-
-CSRF_TRUSTED_ORIGINS = [
-    "https://backend.movie-rank.ru",
-    "http://localhost:3000",
-    "https://hakaton.movie-rank.ru",
-]
-
-CORS_ALLOWED_ORIGINS = [
-    "https://backend.movie-rank.ru",
-    "http://localhost:3000",
-    "https://hakaton.movie-rank.ru",
-]
-
-CORS_ALLOW_CREDENTIALS = True
-
-CSRF_COOKIE_SAMESITE = 'Lax'
-SESSION_COOKIE_SAMESITE = 'Lax'
-
-CSRF_COOKIE_HTTPONLY = True
-SESSION_COOKIE_HTTPONLY = True
-
-SESSION_COOKIE_AGE = 60 * 60 * 24
-SESSION_COOKIE_SECURE = True
-SESSION_COOKIE_DOMAIN = ".movie-rank.ru"  
-
-CSRF_COOKIE_SECURE = True
-CSRF_COOKIE_DOMAIN = ".movie-rank.ru" 
-
-CORS_EXPOSE_HEADERS = ['Content-Type', 'X-CSRFToken']
-
-SESSION_EXPIRE_AT_BROWSER_CLOSE = True
-
-# Application definition
+DEBUG = True
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -175,8 +140,8 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 
 # settings celery
-CELERY_BROKER_URL = "redis://127.0.0.2:6380"
-CELERY_RESULT_BACKEND = "redis://127.0.0.2:6380"
+CELERY_BROKER_URL = "redis://127.0.0.1:6379"
+CELERY_RESULT_BACKEND = "redis://127.0.0.1:6379"
 
 CELERY_ACCEPT_CONTENT = ["json"]
 CELERY_TASK_SERIALIZER = "json"
