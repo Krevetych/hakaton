@@ -1,7 +1,7 @@
 services:
   web:
     build: .
-    command: ["sh", "-c", "./wait_for_db.sh && python manage.py migrate && python manage.py createsuperuser --noinput --email admin@example.com --username admin && gunicorn hakaton.wsgi -b 0.0.0.0:8000 --reload"]
+    command: ["sh", "-c", "python manage.py migrate && gunicorn hakaton.wsgi -b 0.0.0.0:8000 --reload"]
     volumes:
       - .:/app
     ports:
@@ -67,7 +67,7 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
     ports:
-      - "5432:5432"
+      - "5433:5433"
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
