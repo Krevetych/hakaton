@@ -1,36 +1,28 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Frontend часть для хакатона "IT-Вызов"
 
-## Getting Started
+## Оглавление:
+ * **[Основной стек](#основной-стек)**
+ * **[Запуск проекта](#запуск-проекта)**
+	- **[Базовый запуск](#базовый-запуск)**
+	- **[Запуск через Docker](#запуск-через-docker)**
+ * **[Дополнительная информация](#дополнительная-информация)**
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Основной стек
+- **[Next.js v14.2.5](https://nextjs.org/) | [(React v18.3.1)](https://react.dev/)**
+- **[TailwindCSS](https://tailwindcss.com/)**
+- **[Nextui](https://nextui.org/)**
+- **[Axios](https://axios-http.com/)**
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Запуск проекта
+  **Есть 2 возможных варианта запуска проекта:**
+  1. Базовая, с использование Node.js и npm (Классический)
+  2. Запуск Docker контенера (Более быстрый и легкий)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+#### Базовый запуск
+**Убедитесь, что у вас установлены [Node.js](https://nodejs.org) и [npm](https://www.npmjs.com/)**
+	1. Клонируйте репозиторий:
+		```bash
+		git clone {repo}
+		cd repo
+		```
