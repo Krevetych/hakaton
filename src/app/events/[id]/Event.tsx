@@ -32,10 +32,18 @@ export const Event = () => {
 			{isLoading ? (
 				<Loader />
 			) : (
-				<main>
-					<h1>{data?.title}</h1>
-					<p>Описание: {data?.description}</p>
-					<p>Дополнительное описание: {data?.description_over}</p>
+				<main className='my-2 mx-2 flex flex-col gap-y-2 item-center justify-center zed-lg:mx-20 zed-lg:my-8 zed-xl:mx-60 zed-xl:my-5 zed-xl:gap-y-5'>
+					<h1 className='text-2xl zed-lg:text-justify font-black zed-lg:text-3xl zed-xl:text-5xl'>
+						{data?.title}
+					</h1>
+					<div>
+						<p className='text-md zed-lg:text-justify zed-lg:text-lg zed-xl:text-xl'>
+							{data?.description}
+						</p>
+						<p className='text-md zed-lg:text-justify zed-lg:text-lg zed-xl:text-xl'>
+							{data?.description_over}
+						</p>
+					</div>
 				</main>
 			)}
 			<Footer />
