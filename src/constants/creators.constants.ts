@@ -19,7 +19,7 @@ export const CREATORS: ICreator[] = [
 		name: 'Даниил Палабугин',
 		designation: 'Frontend developer',
 		image:
-			'https://sun9-47.userapi.com/impg/luBzvwVNmN5WOzBx-Fm99sq4R6jWswzIsLxNkQ/yy75DRJyjHI.jpg?quality=96&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,990x990&sign=c7fc68db33305b9b99cc3940e3b1ec44&from=bu&u=H8LiMfqKQTRb9fwB-CwNGPrzMQsYAjd3cXvpUJq92c0&cs=990x990'
+			'https://sun9-23.userapi.com/impg/RNhXFGPehbeme9kmMeQqAxZV6EWq4rd4rQ4fGA/9A5lf2px0mg.jpg?size=780x1040&quality=96&sign=872568c92d4bd928b6c9599aeabdf1a5&type=album'
 	},
 	{
 		id: 4,
