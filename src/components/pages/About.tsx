@@ -29,12 +29,16 @@ export const About = () => {
 				showStatus={false}
 				showThumbs={false}
 				autoPlay
-				interval={5000}
+				interval={3000}
 				className='mt-10 hidden zed-lg:block zed-lg:max-w-6xl'
 			>
 				{SPONSORS.map(sponsor => (
 					<div className='flex flex-col gap-y-3 p-5' key={sponsor.id}>
-						<ImagePreview src={sponsor.img} alt={sponsor.alt} />
+						<ImagePreview
+							src={sponsor.img}
+							alt={sponsor.alt}
+							link={sponsor.link}
+						/>
 						<p className='zed-xl:text-lg'>{sponsor.text}</p>
 					</div>
 				))}

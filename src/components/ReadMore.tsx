@@ -7,7 +7,6 @@ import {
 	Modal,
 	ModalBody,
 	ModalContent,
-	ModalFooter,
 	ModalTrigger
 } from './ui/AnimatedModal'
 
