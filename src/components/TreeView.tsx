@@ -14,7 +14,6 @@ import { eventService } from '@/services/event.service'
 
 interface ITree {
 	number: number
-	currentDate?: number
 }
 
 interface ITooltip {
@@ -53,7 +52,7 @@ const TooltipContent = ({ number, title, description, slug }: ITooltip) => {
 	)
 }
 
-export const TreeView = ({ number, currentDate }: ITree) => {
+export const TreeView = ({ number }: ITree) => {
 	const { data } = useQuery({
 		queryKey: ['events'],
 		queryFn: () => eventService.getAllEvents(),
@@ -69,7 +68,6 @@ export const TreeView = ({ number, currentDate }: ITree) => {
 	})
 
 	const today = new Date().getDate()
-	if (currentDate === undefined) currentDate = today
 
 	events.map(item => {
 		const date = new Date(item.date_open)
